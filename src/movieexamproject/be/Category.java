@@ -5,11 +5,14 @@
  */
 package movieexamproject.be;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author narma
  */
 public class Category {
+    private ArrayList<Movie> moviesbycategory=new ArrayList();
     
     private int id;
     private String name;
@@ -34,6 +37,9 @@ public class Category {
         this.id = id;
         this.name = name;
     }
-    
-    s
+
+   public void acceptMovie()
+   {
+       
+   }
 }
