@@ -28,5 +28,6 @@
       <Button fx:id="addMovieBtn" layoutX="459.0" layoutY="441.0" mnemonicParsing="false" text="Add" />
       <Label layoutX="143.0" layoutY="418.0" text="Category " />
       <Label layoutX="459.0" layoutY="418.0" text="Movie" />
+      <Button fx:id="addMovieBtn1" layoutX="503.0" layoutY="441.0" mnemonicParsing="false" text="Edit" />
     </children>
 </AnchorPane>
