@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author narma
  */
 public class Category {
-    private ArrayList<Movie> moviesbycategory=new ArrayList();
+    private ArrayList<Movie> moviesInCategory=new ArrayList();
     
     private int id;
     private String name;
@@ -38,8 +38,14 @@ public class Category {
         this.name = name;
     }
 
-   public void acceptMovie()
+   public void acceptMovies(ArrayList<Movie> moviesInCategory)
    {
-       
+       this.moviesInCategory = moviesInCategory;
    }
+
+    @Override
+    public String toString() {
+        return name; //To change body of generated methods, choose Tools | Templates.
+    }
+   
 }

@@ -5,6 +5,8 @@
  */
 package movieexamproject.be;
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 /**
  *
  * @author narma
@@ -15,9 +17,9 @@ public class Movie {
     private String name;
     private float rating;
     private String filelink;
-    private Timestamp lastview;
+    private Date lastview;
 
-    public Movie(int id, String name, float rating, String filelink, Timestamp lastview)
+    public Movie(int id, String name, float rating, String filelink, Date lastview)
     {
       this.id=id;
       this.name= name;
@@ -57,13 +59,19 @@ public class Movie {
         this.filelink = filelink;
     }
 
-    public Timestamp getLastview() {
+    public Date getLastview() {
         return lastview;
     }
 
-    public void setLastview(Timestamp lastview) {
+    public void setLastview(Date lastview) {
         this.lastview = lastview;
     }
+
+    @Override
+    public String toString() {
+        return name+" "+lastview; //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
     
 }
