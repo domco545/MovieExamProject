@@ -13,6 +13,5 @@ import movieexamproject.be.Category;
  * @author narma
  */
 public interface Interface {
-     public List<Category> getAllCatergories();
-     
+     public List<Category> getAllCatergories();     
 }

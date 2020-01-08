@@ -8,6 +8,8 @@ package movieexamproject.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import movieexamproject.be.Category;
+import movieexamproject.bll.BLLManager;
 
 /**
  * FXML Controller class
@@ -50,9 +54,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button addMovieBtn1;
 
-    /**
-     * Initializes the controller class.
-     */
+    BLLManager bllm = new BLLManager();
+    private ObservableList<Category> obsCategories = FXCollections.observableArrayList(bllm.getAllCatergories());
+
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
