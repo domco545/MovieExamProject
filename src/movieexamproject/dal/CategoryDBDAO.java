@@ -27,11 +27,15 @@ public class CategoryDBDAO {
     
     public CategoryDBDAO(){     
         ds = new SQLServerDataSource();
-        ds.setDatabaseName("MyTunesCSe19B3");
+        ds.setDatabaseName("MovieExamProject");
         ds.setUser("CSe19B_3");
         ds.setPassword("CSe19B_3");
         ds.setServerName("10.176.111.31");
         ds.setPortNumber(1433);
+    }
+    public static void main(String[] args) {
+        CategoryDBDAO c=new CategoryDBDAO();
+        System.out.println(c.getAllCatergories());
     }
     public List<Category> getAllCatergories()
     {
@@ -47,6 +51,7 @@ public class CategoryDBDAO {
                 Category category=new Category(id,name);
                 categories.add(category);
             }
+            return categories;
             
         } catch (SQLServerException ex) {
             Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);

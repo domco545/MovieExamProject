@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import movieexamproject.be.Movie;
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -28,12 +30,13 @@ public class MovieDBDAO {
     
     public MovieDBDAO(){     
         ds = new SQLServerDataSource();
-        ds.setDatabaseName("MyTunesCSe19B3");
+        ds.setDatabaseName("MovieExamProject");
         ds.setUser("CSe19B_3");
         ds.setPassword("CSe19B_3");
         ds.setServerName("10.176.111.31");
         ds.setPortNumber(1433);
     }
+    
     public List<Movie> getAllMovies()
     {
          try(Connection con=ds.getConnection()) {
@@ -47,10 +50,12 @@ public class MovieDBDAO {
                 String name=r.getString("name");
                 float rating=r.getFloat("rating");
                 String filelink = r.getString("filelink");
-                Timestamp lastview=r.getTimestamp("lastview");
+                Date lastview = (r.getDate("lastview"));
                 Movie movie = new Movie(id,name,rating,filelink,lastview);
                 movies.add(movie);
+                
             } 
+            return movies;
             
         } catch (SQLServerException ex) {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
