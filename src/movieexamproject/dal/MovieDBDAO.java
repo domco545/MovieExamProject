@@ -37,31 +37,31 @@ public class MovieDBDAO {
         ds.setPortNumber(1433);
     }
     
-    public List<Movie> getAllMovies()
-    {
-         try(Connection con=ds.getConnection()) {
-            String sql = "SELECT * FROM Movie";
-            List<Movie> movies = new ArrayList();
-            Statement s= con.createStatement();
-            ResultSet r = s.executeQuery(sql);
-            while(r.next())
-            {
-                int id =r.getInt("id");
-                String name=r.getString("name");
-                float rating=r.getFloat("rating");
-                String filelink = r.getString("filelink");
-                Date lastview = (r.getDate("lastview"));
-                Movie movie = new Movie(id,name,rating,filelink,lastview);
-                movies.add(movie);
-                
-            } 
-            return movies;
-            
-        } catch (SQLServerException ex) {
-            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-         return null;
-    }
+//    public List<Movie> getAllMovies()
+//    {
+//         try(Connection con=ds.getConnection()) {
+//            String sql = "SELECT * FROM Movie";
+//            List<Movie> movies = new ArrayList();
+//            Statement s= con.createStatement();
+//            ResultSet r = s.executeQuery(sql);
+//            while(r.next())
+//            {
+//                int id =r.getInt("id");
+//                String name=r.getString("name");
+//                float rating=r.getFloat("rating");
+//                String filelink = r.getString("filelink");
+//                Date lastview = (r.getDate("lastview"));
+//                Movie movie = new Movie(id,name,rating,filelink,lastview);
+//                movies.add(movie);
+//                
+//            } 
+//            return movies;
+//            
+//        } catch (SQLServerException ex) {
+//            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//         return null;
+//    }
 }
