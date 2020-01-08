@@ -8,17 +8,10 @@ package movieexamproject.dal;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import movieexamproject.be.Movie;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -37,31 +30,60 @@ public class MovieDBDAO {
         ds.setPortNumber(1433);
     }
     
-//    public List<Movie> getAllMovies()
-//    {
-//         try(Connection con=ds.getConnection()) {
-//            String sql = "SELECT * FROM Movie";
-//            List<Movie> movies = new ArrayList();
-//            Statement s= con.createStatement();
-//            ResultSet r = s.executeQuery(sql);
-//            while(r.next())
-//            {
-//                int id =r.getInt("id");
-//                String name=r.getString("name");
-//                float rating=r.getFloat("rating");
-//                String filelink = r.getString("filelink");
-//                Date lastview = (r.getDate("lastview"));
-//                Movie movie = new Movie(id,name,rating,filelink,lastview);
-//                movies.add(movie);
-//                
-//            } 
-//            return movies;
-//            
-//        } catch (SQLServerException ex) {
-//            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } 
-//         return null;
-//    }
+    public void addMovie(String name, String path){
+        try(Connection con = ds.getConnection()){
+            String sql = "INSERT INTO Movie (name,filepath) VALUES (?,?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setString(2, path);
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteMovie(int id){
+        try(Connection con = ds.getConnection()){
+            String sql = "DELETE FROM Movie WHERE id = ?;"
+                       + "DELETE FROM MoviesOnCategories WHERE CategoryId = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateMovie(int id, String name, float rating, String filepath){
+        try(Connection con = ds.getConnection()){
+            String sql = "UPDATE Movie SET name = ?, rating = ?, filepath = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setFloat(2, rating);
+            pstmt.setString(3, filepath);
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void playedMovie(int id){
+        try(Connection con = ds.getConnection()){
+            String sql = "UPDATE Movie SET lastview = CURRENT_TIMESTAMP WHERE id = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

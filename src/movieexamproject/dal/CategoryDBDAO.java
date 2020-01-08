@@ -35,19 +35,14 @@ public class CategoryDBDAO {
         ds.setServerName("10.176.111.31");
         ds.setPortNumber(1433);
     }
-    public static void main(String[] args) {
-        CategoryDBDAO c=new CategoryDBDAO();
-        System.out.println(c.getAllCatergories());
-    }
+
     public List<Category> getAllCatergories()
     {
         try(Connection con=ds.getConnection()){
-            String sql="SELECT * FROM Category WHERE id!=1";
+            String sql="SELECT * FROM Category";
                 Statement s= con.createStatement();
                 List<Category> categories=new ArrayList();
                 ResultSet r = s.executeQuery(sql);
-                Category categoryAll=new Category(1,"All");
-                categories.add(categoryAll);
             while(r.next())
             {
                 int id =r.getInt("id");
@@ -58,26 +53,43 @@ public class CategoryDBDAO {
             
                 for (Category category : categories) {
                     int catId = category.getId();
+                    ArrayList<Movie> movies = new ArrayList();
 
-                    String sql2 = "SELECT Movie.id,Movie.name,Movie.filelink,Movie.rating,Movie.lastview,MoviesOnCategories.CategoryId,MoviesOnCategories.MovieId\n" +
+                    if (catId==1) {
+                        String sqlAll = "SELECT * FROM Movie";
+                        Statement st = con.createStatement();
+                        ResultSet rsAll = st.executeQuery(sqlAll);
+                        while(rsAll.next()){
+                            int id =rsAll.getInt("id");
+                            String name=rsAll.getString("name");
+                            float rating=rsAll.getFloat("rating");
+                            String filelink = rsAll.getString("filepath");
+                            Date lastview = (rsAll.getDate("lastview"));
+                            Movie movie = new Movie(id,name,rating,filelink,lastview);
+                            movies.add(movie);
+                        }
+                        
+                    }else{
+
+                    String sql2 = "SELECT Movie.id,Movie.name,Movie.filepath,Movie.rating,Movie.lastview,MoviesOnCategories.CategoryId,MoviesOnCategories.MovieId\n" +
                                   "FROM MoviesOnCategories\n" +
                                   "LEFT JOIN Movie ON MoviesOnCategories.MovieId = Movie.id\n" +
                                   "WHERE MoviesOnCategories.CategoryId=?";
                     PreparedStatement pstmt= con.prepareStatement(sql2);
                     pstmt.setInt(1, catId);
                     ResultSet rs = pstmt.executeQuery();
-                    ArrayList<Movie> movies = new ArrayList();
                     while(rs.next())
                     {
                         int id =rs.getInt("id");
                         String name=rs.getString("name");
                         float rating=rs.getFloat("rating");
-                        String filelink = rs.getString("filelink");
+                        String filelink = rs.getString("filepath");
                         Date lastview = (rs.getDate("lastview"));
                         Movie movie = new Movie(id,name,rating,filelink,lastview);
                         movies.add(movie);
                     } 
                     category.acceptMovies(movies);
+                    }
                 }
             return categories;
         } catch (SQLServerException ex) {
@@ -86,5 +98,34 @@ public class CategoryDBDAO {
             Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return  null;
+    }
+    
+    public void deleteCategory(int id){
+        try(Connection con=ds.getConnection()){
+            String sql = "DELETE FROM Category WHERE id = ?;"
+                       + "DELETE FROM MoviesOnCategories WHERE CategoryId = ?";
+            PreparedStatement pstmt= con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.setInt(2, id);
+            ResultSet rs = pstmt.executeQuery();
+        }   
+        catch (SQLServerException ex) {
+            Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void addCategory(String name){
+        try(Connection con = ds.getConnection()){
+            String sql = "INSERT INTO Category (name) VALUES (?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
