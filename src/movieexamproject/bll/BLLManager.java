@@ -5,10 +5,16 @@
  */
 package movieexamproject.bll;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author XMdag
  */
 public class BLLManager {
+    
+    private void addMovie(int id, String name, float rating, String filelink, Timestamp lastview){
+    
+    }
     
 }
