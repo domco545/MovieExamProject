@@ -30,7 +30,8 @@ public class BLLManager implements Interface{
     public List<Category> getAllCatergories() {
         return categorylist;
     }
-    public void init ()
+    
+    public void init()
     {   
         categorylist = cat.getAllCatergories();
     }
