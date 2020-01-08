@@ -7,6 +7,7 @@ package movieexamproject.gui;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,6 +33,8 @@ public class AddMovieController implements Initializable {
     private Button addMovie;
     @FXML
     private Button cancel;
+    
+    private boolean readyToSave;
 
     /**
      * Initializes the controller class.
@@ -57,7 +60,17 @@ public class AddMovieController implements Initializable {
         
         if(file.getAbsolutePath().endsWith(".mp4") || file.getAbsolutePath().endsWith(".mpeg4")){
             
-        
+            moviePath.setText(file.getAbsolutePath());
+            
+            readyToSave = true;
+
+            
+        }else{
+            readyToSave = false;
+             moviePath.setText("Please select an mp4 or mpeg4 file");
+            
+        }
+            
     }
     
 }
