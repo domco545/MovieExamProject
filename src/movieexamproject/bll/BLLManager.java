@@ -5,16 +5,24 @@
  */
 package movieexamproject.bll;
 
-import java.sql.Timestamp;
+import java.util.List;
+import movieexamproject.be.Category;
+import movieexamproject.dal.CategoryDBDAO;
+import movieexamproject.dal.MovieDBDAO;
 
 /**
  *
  * @author XMdag
  */
-public class BLLManager {
+public class BLLManager implements Interface{
     
-    private void addMovie(int id, String name, float rating, String filelink, Timestamp lastview){
-    
+    CategoryDBDAO cat= new CategoryDBDAO();
+    MovieDBDAO mov= new MovieDBDAO();
+
+    @Override
+    public List<Category> getAllCatergories() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     
 }
