@@ -14,10 +14,10 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <TextField layoutX="87.0" layoutY="93.0" prefHeight="25.0" prefWidth="205.0" promptText="Name" />
-      <TextField layoutX="87.0" layoutY="125.0" prefHeight="25.0" prefWidth="205.0" promptText="Path" />
-      <Button layoutX="87.0" layoutY="175.0" mnemonicParsing="false" text="Confirm" />
-      <Button layoutX="292.0" layoutY="125.0" mnemonicParsing="false" text="..." />
-      <Button layoutX="240.0" layoutY="175.0" mnemonicParsing="false" text="Cancel" />
+      <TextField fx:id="movieName" layoutX="87.0" layoutY="93.0" prefHeight="25.0" prefWidth="205.0" promptText="Name" />
+      <TextField fx:id="moviePath" layoutX="87.0" layoutY="125.0" prefHeight="25.0" prefWidth="205.0" promptText="Path" />
+      <Button fx:id="addMovie" layoutX="87.0" layoutY="175.0" mnemonicParsing="false" onAction="#addSong" text="Confirm" />
+      <Button fx:id="cancel" layoutX="240.0" layoutY="175.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button layoutX="292.0" layoutY="125.0" mnemonicParsing="false" onAction="#getPath" text="..." />
    </children>
 </AnchorPane>

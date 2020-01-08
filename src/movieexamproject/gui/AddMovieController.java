@@ -5,9 +5,17 @@
  */
 package movieexamproject.gui;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
 /**
  * FXML Controller class
@@ -16,6 +24,15 @@ import javafx.fxml.Initializable;
  */
 public class AddMovieController implements Initializable {
 
+    @FXML
+    private TextField movieName;
+    @FXML
+    private TextField moviePath;
+    @FXML
+    private Button addMovie;
+    @FXML
+    private Button cancel;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +40,24 @@ public class AddMovieController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void addSong(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancel(ActionEvent event) {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void getPath(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        File file = fc.showOpenDialog(null);
+        
+        if(file.getAbsolutePath().endsWith(".mp4") || file.getAbsolutePath().endsWith(".mpeg4")){
+            
+        
+    }
     
 }
