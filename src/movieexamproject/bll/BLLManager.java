@@ -5,6 +5,7 @@
  */
 package movieexamproject.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import movieexamproject.be.Category;
 import movieexamproject.dal.CategoryDBDAO;
@@ -18,11 +19,20 @@ public class BLLManager implements Interface{
     
     CategoryDBDAO cat= new CategoryDBDAO();
     MovieDBDAO mov= new MovieDBDAO();
+    List<Category> categorylist = new ArrayList();
+
+    public BLLManager() {
+        init();
+    }
+    
 
     @Override
     public List<Category> getAllCatergories() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return categorylist;
     }
-    
+    public void init ()
+    {   
+        categorylist = cat.getAllCatergories();
+    }
     
 }
