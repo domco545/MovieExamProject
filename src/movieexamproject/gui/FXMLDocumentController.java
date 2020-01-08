@@ -8,6 +8,7 @@ package movieexamproject.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,13 +42,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button addCatBtn;
     @FXML
-    private Button editMovieBtn;
-    @FXML
     private Button removeCatBtn;
     @FXML
     private Button removeMovieBtn;
     @FXML
     private Button addMovieBtn;
+    @FXML
+    private Button addMovieBtn1;
 
     /**
      * Initializes the controller class.
@@ -57,9 +58,14 @@ public class FXMLDocumentController implements Initializable {
        
     }    
     
-    private void openAddMovie(Stage stage) throws IOException{
-            Parent root = FXMLLoader.load(getClass().getResource("addMovie.fxml"));
+
+
+    @FXML
+    private void openAddMovie(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/addMovie.fxml"));
+                  Parent root = loader.load();
         
+                    Stage stage = new Stage();
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
