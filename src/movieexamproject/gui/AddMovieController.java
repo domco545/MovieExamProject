@@ -73,6 +73,7 @@ public class AddMovieController implements Initializable {
             String path = moviePath.getText();
             ArrayList<Category> selected = new ArrayList<Category>(obsSelected);
             in.addMovie(name, path, selected);
+            cancel(event);
         }
     }
 
@@ -104,6 +105,10 @@ public class AddMovieController implements Initializable {
         categoryView.setItems(obsSelected);
         choicebox.getItems().clear();
         choicebox.getItems().addAll(obsChoicebox);
+        choicebox.getSelectionModel().selectFirst();
+        if (obsChoicebox.isEmpty()) {
+            addCategoryBtn.setDisable(true);
+        }
     }
     
     private boolean chceckIfReady(){
@@ -128,5 +133,6 @@ public class AddMovieController implements Initializable {
         temp.remove(0); //removes all category from selection
         obsChoicebox = FXCollections.observableArrayList(temp);
         choicebox.getItems().addAll(obsChoicebox);
+        choicebox.getSelectionModel().selectFirst();
     }
 }
