@@ -41,7 +41,7 @@ public class CategoryDBDAO {
         try(Connection con=ds.getConnection()){
             String sql="SELECT * FROM Category";
                 Statement s= con.createStatement();
-                List<Category> categories=new ArrayList();
+                ArrayList<Category> categories = new ArrayList();
                 ResultSet r = s.executeQuery(sql);
             while(r.next())
             {

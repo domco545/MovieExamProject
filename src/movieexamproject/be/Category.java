@@ -45,7 +45,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return name; //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
    
 }

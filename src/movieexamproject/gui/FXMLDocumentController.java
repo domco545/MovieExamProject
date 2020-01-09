@@ -64,7 +64,7 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       categoryList.setItems(obsCategories);
     }    
     
 
@@ -72,9 +72,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void openAddMovie(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/addMovie.fxml"));
-                  Parent root = loader.load();
+        Parent root = loader.load();
+        Stage stage = new Stage();
         
-                    Stage stage = new Stage();
+        AddMovieController amc = loader.getController();
+        amc.acceptCategories(obsCategories);
+                    
         Scene scene = new Scene(root);
         
         stage.setScene(scene);

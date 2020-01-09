@@ -101,7 +101,8 @@ public class AddMovieController implements Initializable {
         obsSelected.add(temp);
         obsChoicebox.remove(temp);
         categoryView.setItems(obsSelected);
-        choicebox.setItems(obsChoicebox);
+        choicebox.getItems().clear();
+        choicebox.getItems().addAll(obsChoicebox);
     }
     
     private boolean chceckIfReady(){
@@ -118,5 +119,11 @@ public class AddMovieController implements Initializable {
             return false;
         }
         return true;
+    }
+    
+    public void acceptCategories(ObservableList<Category> obsCategory){
+        ArrayList<Category> temp = new ArrayList<Category>(obsCategory);
+        obsChoicebox = FXCollections.observableArrayList(temp);
+        choicebox.getItems().addAll(obsChoicebox);
     }
 }
