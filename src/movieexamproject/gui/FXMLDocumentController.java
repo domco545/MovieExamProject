@@ -102,10 +102,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void removeCategory(ActionEvent event) {
+        int id = categoryList.getSelectionModel().getSelectedItem().getId();
+        in.deleteCategory(id);
     }
 
     @FXML
     private void removeMovie(ActionEvent event) {
+        int id = tableView.getSelectionModel().getSelectedItem().getId();
+        in.deleteMovie(id);
     }
 
     @FXML

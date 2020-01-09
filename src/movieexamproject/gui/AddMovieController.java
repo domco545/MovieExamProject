@@ -55,7 +55,6 @@ public class AddMovieController implements Initializable {
     
     private ObservableList<Category> obsSelected = FXCollections.observableArrayList();
     private ObservableList<Category> obsChoicebox = FXCollections.observableArrayList();
-    private boolean readyToSave = false;
     Interface in = new BllManager();
 
 
@@ -69,7 +68,7 @@ public class AddMovieController implements Initializable {
 
     @FXML
     private void addSong(ActionEvent event) {
-        if (readyToSave) {
+        if (chceckIfReady()) {
             String name = movieName.getText();
             String path = moviePath.getText();
             ArrayList<Category> selected = new ArrayList<Category>(obsSelected);
@@ -84,6 +83,7 @@ public class AddMovieController implements Initializable {
 
     @FXML
     private void getPath(ActionEvent event) {
+        //getting file path and chechking if extensions match requirements
         FileChooser fc = new FileChooser();
         File file = fc.showOpenDialog(null);
         
@@ -97,6 +97,7 @@ public class AddMovieController implements Initializable {
 
     @FXML
     private void addToList(ActionEvent event) {
+        //adding from choice box to selected list
         Category temp = choicebox.getSelectionModel().getSelectedItem();
         obsSelected.add(temp);
         obsChoicebox.remove(temp);
@@ -106,6 +107,7 @@ public class AddMovieController implements Initializable {
     }
     
     private boolean chceckIfReady(){
+        //checking if every field is filled
         if(moviePath.getText() == null || moviePath.getText().trim().isEmpty()){
             errorLabel.setText("Please choose the file path");
             return false;
@@ -122,7 +124,8 @@ public class AddMovieController implements Initializable {
     }
     
     public void acceptCategories(ObservableList<Category> obsCategory){
-        ArrayList<Category> temp = new ArrayList<Category>(obsCategory);
+        ArrayList<Category> temp = new ArrayList<Category>(obsCategory); //had to do that becasue observable list were somehow connected 
+        temp.remove(0); //removes all category from selection
         obsChoicebox = FXCollections.observableArrayList(temp);
         choicebox.getItems().addAll(obsChoicebox);
     }
