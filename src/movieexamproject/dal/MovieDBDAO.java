@@ -7,11 +7,15 @@ package movieexamproject.dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import movieexamproject.be.Category;
+import java.sql.*;
 
 /**
  *
@@ -30,13 +34,28 @@ public class MovieDBDAO {
         ds.setPortNumber(1433);
     }
     
-    public void addMovie(String name, String path){
+    public void addMovie(String name, String path, ArrayList<Category> selectedCategory){
+        int movieID = -1;
         try(Connection con = ds.getConnection()){
             String sql = "INSERT INTO Movie (name,filepath) VALUES (?,?)";
-            PreparedStatement pstmt = con.prepareStatement(sql);
+            PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, name);
             pstmt.setString(2, path);
             pstmt.executeUpdate();
+            
+            ResultSet rs = pstmt.getGeneratedKeys();
+            while(rs.next()){
+               movieID = rs.getInt("id");
+            }
+            for (Category category : selectedCategory) {
+                int categoryID = category.getId();
+                
+                String sql2 = "INSERT INTO MoviesOnCategories (CategoryId,MovieId) VALUES (?,?)";
+                PreparedStatement pstmt2 = con.prepareStatement(sql2);
+                pstmt2.setInt(1, categoryID);
+                pstmt2.setInt(2, movieID);
+                pstmt2.executeUpdate();
+            }
         } catch (SQLServerException ex) {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

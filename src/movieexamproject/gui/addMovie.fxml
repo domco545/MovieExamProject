@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,11 +18,12 @@
       </Text>
       <TextField fx:id="movieName" layoutX="87.0" layoutY="93.0" prefHeight="25.0" prefWidth="205.0" promptText="Name" />
       <TextField fx:id="moviePath" layoutX="86.0" layoutY="163.0" prefHeight="25.0" prefWidth="205.0" promptText="Path" />
-      <Button fx:id="addMovie" layoutX="82.0" layoutY="213.0" mnemonicParsing="false" onAction="#addSong" text="Confirm" />
-      <Button fx:id="cancel" layoutX="240.0" layoutY="213.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button fx:id="addMovie" layoutX="83.0" layoutY="199.0" mnemonicParsing="false" onAction="#addSong" text="Confirm" />
+      <Button fx:id="cancel" layoutX="240.0" layoutY="199.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
       <Button fx:id="chooseBtn" layoutX="293.0" layoutY="163.0" mnemonicParsing="false" onAction="#getPath" text="..." />
       <ChoiceBox fx:id="choicebox" layoutX="87.0" layoutY="130.0" prefWidth="150.0" />
       <Button fx:id="addCategoryBtn" layoutX="241.0" layoutY="130.0" mnemonicParsing="false" onAction="#addToList" text="Add" />
       <ListView fx:id="categoryView" layoutX="341.0" layoutY="25.0" prefHeight="223.0" prefWidth="144.0" />
+      <Label fx:id="errorLabel" layoutX="86.0" layoutY="239.0" prefHeight="17.0" prefWidth="205.0" />
    </children>
 </AnchorPane>

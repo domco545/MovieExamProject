@@ -5,6 +5,7 @@
  */
 package movieexamproject.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 import movieexamproject.be.Category;
 
@@ -16,7 +17,7 @@ public interface Interface {
      public List<Category> getAllCatergories();  
      public void deleteCategory(int id);
       public void addCategory(String name);
-      public void addMovie(String name, String path);
+      public void addMovie(String name, String path, ArrayList<Category> selectedCategory);
       public void deleteMovie(int id);
       public void updateMovie(int id, String name, float rating, String filepath);
       public void playedMovie(int id);

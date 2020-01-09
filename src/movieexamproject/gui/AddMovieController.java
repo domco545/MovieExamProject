@@ -8,18 +8,24 @@ package movieexamproject.gui;
 import java.io.File;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import movieexamproject.be.Category;
+import movieexamproject.bll.BllManager;
+import movieexamproject.bll.Interface;
 
 /**
  * FXML Controller class
@@ -36,16 +42,22 @@ public class AddMovieController implements Initializable {
     private Button addMovie;
     @FXML
     private Button cancel;
-    
-    private boolean readyToSave;
     @FXML
     private Button chooseBtn;
     @FXML
-    private ChoiceBox<?> choicebox;
+    private ChoiceBox<Category> choicebox;
     @FXML
     private Button addCategoryBtn;
     @FXML
     private ListView<Category> categoryView;
+    @FXML
+    private Label errorLabel;
+    
+    private ObservableList<Category> obsSelected = FXCollections.observableArrayList();
+    private ObservableList<Category> obsChoicebox = FXCollections.observableArrayList();
+    private boolean readyToSave = false;
+    Interface in = new BllManager();
+
 
     /**
      * Initializes the controller class.
@@ -57,6 +69,12 @@ public class AddMovieController implements Initializable {
 
     @FXML
     private void addSong(ActionEvent event) {
+        if (readyToSave) {
+            String name = movieName.getText();
+            String path = moviePath.getText();
+            ArrayList<Category> selected = new ArrayList<Category>(obsSelected);
+            in.addMovie(name, path, selected);
+        }
     }
 
     @FXML
@@ -71,21 +89,34 @@ public class AddMovieController implements Initializable {
         
         if(file.getAbsolutePath().endsWith(".mp4") || file.getAbsolutePath().endsWith(".mpeg4")){
             
-            moviePath.setText(file.getAbsolutePath());
-            
-            readyToSave = true;
-
-            
+            moviePath.setText(file.getAbsolutePath()); 
         }else{
-            readyToSave = false;
-             moviePath.setText("Please select an mp4 or mpeg4 file");
-            
-        }
-            
+             errorLabel.setText("Please select an mp4 or mpeg4 file");    
+        }    
     }
 
     @FXML
     private void addToList(ActionEvent event) {
+        Category temp = choicebox.getSelectionModel().getSelectedItem();
+        obsSelected.add(temp);
+        obsChoicebox.remove(temp);
+        categoryView.setItems(obsSelected);
+        choicebox.setItems(obsChoicebox);
     }
     
+    private boolean chceckIfReady(){
+        if(moviePath.getText() == null || moviePath.getText().trim().isEmpty()){
+            errorLabel.setText("Please choose the file path");
+            return false;
+        }else 
+        if(movieName.getText() == null || movieName.getText().trim().isEmpty()){
+            errorLabel.setText("Please enter the movie name");
+            return false;
+       }else
+        if(obsSelected.isEmpty()){
+            errorLabel.setText("Please select at least one category");
+            return false;
+        }
+        return true;
+    }
 }

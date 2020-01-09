@@ -44,8 +44,8 @@ public class BllManager implements Interface{
     }
 
     @Override
-    public void addMovie(String name, String path) {
-     moviedao.addMovie(name, path);
+    public void addMovie(String name, String path, ArrayList<Category> selectedCategory) {
+     moviedao.addMovie(name, path, selectedCategory);
     }
 
     @Override
