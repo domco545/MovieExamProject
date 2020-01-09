@@ -6,6 +6,8 @@
 package movieexamproject.bll;
 
 import java.util.ArrayList;
+import java.util.List;
+import movieexamproject.be.Category;
 import movieexamproject.be.Movie;
 import movieexamproject.dal.CategoryDBDAO;
 import movieexamproject.dal.MovieDBDAO;
@@ -14,18 +16,53 @@ import movieexamproject.dal.MovieDBDAO;
  *
  * @author Martin
  */
-public class BllManager {
+public class BllManager implements Interface{
      private MovieDBDAO moviedao = new MovieDBDAO();
      private CategoryDBDAO categorydbdao = new CategoryDBDAO();
+
      
-     /*
-     public ArrayList<Movie> addSong(){
+
+    public BllManager() {
+        
+    }
      
-     }
-*/
-     /*
-     public ArrayList<Category> addCategory(){
-         
-     }
-*/
+     
+    @Override
+    public List<Category> getAllCatergories() {
+       return categorydbdao.getAllCatergories();
+       
+    }
+
+    @Override
+    public void deleteCategory(int id) {
+      categorydbdao.deleteCategory(id);
+    }
+
+    @Override
+    public void addCategory(String name) {
+     categorydbdao.addCategory(name);
+    }
+
+    @Override
+    public void addMovie(String name, String path) {
+     moviedao.addMovie(name, path);
+    }
+
+    @Override
+    public void deleteMovie(int id) {
+     moviedao.deleteMovie(id);
+    }
+
+    @Override
+    public void updateMovie(int id, String name, float rating, String filepath) {
+        moviedao.updateMovie(id, name, rating, filepath);
+    }
+
+    @Override
+    public void playedMovie(int id) {
+        moviedao.playedMovie(id);
+    }
+        
+     
+     
 }

@@ -22,7 +22,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import movieexamproject.be.Category;
-import movieexamproject.bll.BLLManager;
+import movieexamproject.bll.BllManager;
+import movieexamproject.bll.Interface;
 
 /**
  * FXML Controller class
@@ -54,9 +55,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button addMovieBtn1;
 
-    BLLManager bllm = new BLLManager();
-    private ObservableList<Category> obsCategories = FXCollections.observableArrayList(bllm.getAllCatergories());
-
+    Interface in = new BllManager();
+    private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
+     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
