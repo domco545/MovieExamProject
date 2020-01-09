@@ -15,8 +15,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import movieexamproject.be.Category;
 
 /**
  * FXML Controller class
@@ -35,6 +38,14 @@ public class AddMovieController implements Initializable {
     private Button cancel;
     
     private boolean readyToSave;
+    @FXML
+    private Button chooseBtn;
+    @FXML
+    private ChoiceBox<?> choicebox;
+    @FXML
+    private Button addCategoryBtn;
+    @FXML
+    private ListView<Category> categoryView;
 
     /**
      * Initializes the controller class.
@@ -71,6 +82,10 @@ public class AddMovieController implements Initializable {
             
         }
             
+    }
+
+    @FXML
+    private void addToList(ActionEvent event) {
     }
     
 }

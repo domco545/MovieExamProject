@@ -18,10 +18,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import movieexamproject.be.Category;
+import movieexamproject.be.Movie;
 import movieexamproject.bll.BllManager;
 import movieexamproject.bll.Interface;
 
@@ -35,7 +37,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label label;
     @FXML
-    private TableView<?> tableView;
+    private TableView<Movie> tableView;
     @FXML
     private Button ratingBtn;
     @FXML
@@ -54,10 +56,11 @@ public class FXMLDocumentController implements Initializable {
     private Button addMovieBtn;
     @FXML
     private Button addMovieBtn1;
-
+    @FXML
+    private ListView<Category> categoryList;
+     
     Interface in = new BllManager();
     private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
-     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,6 +79,34 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void rateBtnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void playBtnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void searchBtnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void addCategory(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeCategory(ActionEvent event) {
+    }
+
+    @FXML
+    private void removeMovie(ActionEvent event) {
+    }
+
+    @FXML
+    private void editMovie(ActionEvent event) {
     }
     }
     

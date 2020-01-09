@@ -17,17 +17,17 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button fx:id="ratingBtn" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" text="Rating" />
-      <Button fx:id="playBtn" layoutX="415.0" layoutY="189.0" mnemonicParsing="false" text="Play" />
+      <Button fx:id="ratingBtn" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" onAction="#rateBtnAction" text="Rating" />
+      <Button fx:id="playBtn" layoutX="415.0" layoutY="189.0" mnemonicParsing="false" onAction="#playBtnAction" text="Play" />
       <TextField fx:id="searchField" layoutX="397.0" layoutY="22.0" />
-      <Button fx:id="searchBtn" layoutX="552.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
-      <ListView layoutX="-2.0" layoutY="-1.0" prefHeight="480.0" prefWidth="126.0" />
-      <Button fx:id="addCatBtn" layoutX="143.0" layoutY="441.0" mnemonicParsing="false" text="Add" />
-      <Button fx:id="removeCatBtn" layoutX="187.0" layoutY="441.0" mnemonicParsing="false" text="Remove" />
-      <Button fx:id="removeMovieBtn" layoutX="549.0" layoutY="441.0" mnemonicParsing="false" text="Remove" />
+      <Button fx:id="searchBtn" layoutX="552.0" layoutY="22.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
+      <ListView fx:id="categoryList" layoutX="-2.0" layoutY="-1.0" prefHeight="480.0" prefWidth="126.0" />
+      <Button fx:id="addCatBtn" layoutX="143.0" layoutY="441.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
+      <Button fx:id="removeCatBtn" layoutX="187.0" layoutY="441.0" mnemonicParsing="false" onAction="#removeCategory" text="Remove" />
+      <Button fx:id="removeMovieBtn" layoutX="549.0" layoutY="441.0" mnemonicParsing="false" onAction="#removeMovie" text="Remove" />
       <Button fx:id="addMovieBtn" layoutX="459.0" layoutY="441.0" mnemonicParsing="false" onAction="#openAddMovie" text="Add" />
       <Label layoutX="143.0" layoutY="418.0" text="Category " />
       <Label layoutX="459.0" layoutY="418.0" text="Movie" />
-      <Button fx:id="addMovieBtn1" layoutX="503.0" layoutY="441.0" mnemonicParsing="false" text="Edit" />
+      <Button fx:id="addMovieBtn1" layoutX="503.0" layoutY="441.0" mnemonicParsing="false" onAction="#editMovie" text="Edit" />
     </children>
 </AnchorPane>
