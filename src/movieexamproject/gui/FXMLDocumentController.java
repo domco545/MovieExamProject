@@ -5,6 +5,8 @@
  */
 package movieexamproject.gui;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -89,8 +91,26 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void playBtnAction(ActionEvent event) {
+    private void playBtnAction(ActionEvent event) throws IOException {
+        
+       String path = tableView.getSelectionModel().getSelectedItem().getFilelink();
+
+        
+        File file = new File(path);
+        
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+        
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()) desktop.open(file);
+        
+
     }
+
+    
 
     @FXML
     private void searchBtnAction(ActionEvent event) {
