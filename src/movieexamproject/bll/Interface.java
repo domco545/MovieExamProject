@@ -8,6 +8,7 @@ package movieexamproject.bll;
 import java.util.ArrayList;
 import java.util.List;
 import movieexamproject.be.Category;
+import movieexamproject.be.Movie;
 
 /**
  *
@@ -22,5 +23,6 @@ public interface Interface {
       public void updateMovie(int id, String name, String filepath,ArrayList<Category> categories);
       public void playedMovie(int id);
       public ArrayList<Category> getCategoriesByMovie(int movieid);
+      public void fetchAllFromOmdb(ArrayList<Movie> allMovies);
      
 }

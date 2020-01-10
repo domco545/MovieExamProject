@@ -16,6 +16,7 @@
 # Package Files #
 *.jar
 !mssql-jdbc-6.4.0.jre9.jar
+!json-simple-1.1.1.jar
 *.war
 *.nar
 *.ear
