@@ -21,5 +21,6 @@ public interface Interface {
       public void deleteMovie(int id);
       public void updateMovie(int id, String name, float rating, String filepath);
       public void playedMovie(int id);
+      public ArrayList<Category> getCategoriesByMovie(int movieid);
      
 }
