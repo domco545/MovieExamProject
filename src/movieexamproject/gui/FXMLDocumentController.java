@@ -113,7 +113,18 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void editMovie(ActionEvent event) {
+    private void editMovie(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/EditMovie.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        /*AddMovieController amc = loader.getController();
+        amc.acceptCategories(obsCategories);*/
+                    
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
     }
     
