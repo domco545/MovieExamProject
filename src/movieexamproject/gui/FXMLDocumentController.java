@@ -155,8 +155,8 @@ public class FXMLDocumentController implements Initializable {
         Parent root = loader.load();
         Stage stage = new Stage();
         
-        /*AddMovieController amc = loader.getController();
-        amc.acceptCategories(obsCategories);*/
+        EditMovieController emc = loader.getController();
+        emc.acceptData(tableView.getSelectionModel().getSelectedItem(), obsCategories);
                     
         Scene scene = new Scene(root);
         

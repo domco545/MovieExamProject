@@ -128,4 +128,32 @@ public class CategoryDBDAO {
             Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public ArrayList<Category> getCategoriesByMovie(int movieid)
+    {
+        try(Connection con = ds.getConnection()) {
+            String sql="SELECT Category.id, Category.name, MoviesOnCategories.CategoryId FROM MoviesOnCategories  "
+                    + "LEFT JOIN Category ON MoviesOnCategories.CategoryId=Category.id"
+                    + "WHERE MoviesOnCategories.MovieId =?";
+            ArrayList<Category> categories = new ArrayList();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, movieid);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next())
+            {
+                int id =rs.getInt("id");
+                String name = rs.getString("name");
+                Category category=new Category(id,name);
+                categories.add(category);
+            }
+            return categories;
+            
+        } catch (SQLServerException ex) {
+            Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

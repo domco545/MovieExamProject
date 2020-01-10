@@ -6,7 +6,11 @@
 package movieexamproject.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +18,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import movieexamproject.be.Category;
+import movieexamproject.be.Movie;
+import movieexamproject.bll.BllManager;
+import movieexamproject.bll.Interface;
 
 /**
  * FXML Controller class
@@ -25,9 +33,9 @@ public class EditMovieController implements Initializable {
     @FXML
     private TextField editMovietxt;
     @FXML
-    private ChoiceBox<?> choicebox;
+    private ChoiceBox<Category> choicebox;
     @FXML
-    private ListView<?> ListView;
+    private ListView<Category> ListView;
     @FXML
     private Button RemoveCategoryBtn;
     @FXML
@@ -36,7 +44,12 @@ public class EditMovieController implements Initializable {
     private Button ConfirmBtn;
     @FXML
     private Button CancelBtn;
-
+    Category category;
+    Movie movie;
+     private ObservableList<Category> obsSelected = FXCollections.observableArrayList();
+    private ObservableList<Category> obsChoicebox = FXCollections.observableArrayList();
+    private ArrayList<Category> temp;
+    Interface in = new BllManager();
     /**
      * Initializes the controller class.
      */
@@ -61,4 +74,30 @@ public class EditMovieController implements Initializable {
     private void cancel(ActionEvent event) {
     }
     
+  
+    public void acceptData(Movie movie, ObservableList<Category> allCategories)
+    {
+        this.movie= movie;
+        editMovietxt.setText(movie.getName());
+        
+        temp = new ArrayList<Category>(allCategories);
+        filterChoicebox();
+    }
+    public void filterChoicebox()
+    {
+        
+        ArrayList<Category> currentCategories = in.getCategoriesByMovie(movie.getId());
+        obsSelected = FXCollections.observableArrayList(currentCategories);
+        ListView.setItems(obsSelected);
+        
+        for (Category currentCategory : currentCategories) {
+            for (Category cat : temp) {
+                if(currentCategory.getId()==cat.getId())
+                    temp.remove(cat);
+            }
+        }
+        obsChoicebox = FXCollections.observableArrayList(temp);
+        choicebox.getItems().addAll(obsChoicebox);
+        
+    }
 }

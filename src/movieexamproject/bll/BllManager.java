@@ -62,6 +62,11 @@ public class BllManager implements Interface{
     public void playedMovie(int id) {
         moviedao.playedMovie(id);
     }
+
+    @Override
+    public ArrayList<Category> getCategoriesByMovie(int movieid) {
+      return categorydbdao.getCategoriesByMovie(movieid);
+    }
         
      
      
