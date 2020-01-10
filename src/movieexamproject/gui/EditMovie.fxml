@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="286.0" prefWidth="410.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="movieexamproject.gui.EditMovieController">
+<AnchorPane id="AnchorPane" prefHeight="347.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.EditMovieController">
    <children>
       <Label layoutX="48.0" layoutY="24.0" prefHeight="53.0" prefWidth="124.0" text="Edit Movie">
          <font>
@@ -18,10 +17,13 @@
       </Label>
       <TextField fx:id="editMovietxt" layoutX="48.0" layoutY="92.0" promptText="name" />
       <ChoiceBox fx:id="choicebox" layoutX="47.0" layoutY="131.0" prefWidth="150.0" />
-      <ListView fx:id="ListView" layoutX="227.0" layoutY="32.0" prefHeight="197.0" prefWidth="150.0" />
-      <Button fx:id="RemoveCategoryBtn" layoutX="317.0" layoutY="237.0" mnemonicParsing="false" onAction="#removeCategory" text="Remove" />
+      <ListView fx:id="ListView" layoutX="225.0" layoutY="69.0" prefHeight="197.0" prefWidth="150.0" />
+      <Button fx:id="RemoveCategoryBtn" layoutX="317.0" layoutY="273.0" mnemonicParsing="false" onAction="#removeCategory" text="Remove" />
       <Button fx:id="addCategoryBtn" layoutX="158.0" layoutY="168.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
-      <Button fx:id="ConfirmBtn" layoutX="34.0" layoutY="237.0" mnemonicParsing="false" onAction="#confirmAndSave" text="Confirm" />
-      <Button fx:id="CancelBtn" layoutX="146.0" layoutY="237.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button fx:id="ConfirmBtn" layoutX="34.0" layoutY="273.0" mnemonicParsing="false" onAction="#confirmAndSave" text="Confirm" />
+      <Button fx:id="CancelBtn" layoutX="146.0" layoutY="273.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <TextField fx:id="filepathTxt" editable="false" layoutX="48.0" layoutY="200.0" promptText="path" />
+      <Button fx:id="filepathBtn" layoutX="172.0" layoutY="234.0" mnemonicParsing="false" onAction="#chooseFile" text="..." />
+      <Label fx:id="errorLabel" layoutX="20.0" layoutY="238.0" prefHeight="18.0" prefWidth="149.0" text="Label" />
    </children>
 </AnchorPane>

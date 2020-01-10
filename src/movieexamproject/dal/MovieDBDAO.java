@@ -78,14 +78,26 @@ public class MovieDBDAO {
         }
     }
     
-    public void updateMovie(int id, String name, float rating, String filepath){
+    public void updateMovie(int id, String name, String filepath,ArrayList<Category> categories){
         try(Connection con = ds.getConnection()){
-            String sql = "UPDATE Movie SET name = ?, rating = ?, filepath = ?";
+            String sql = "UPDATE Movie SET name = ?,  filepath = ?"
+                       + "DELETE FROM MoviesOnCategories WHERE MovieId=?";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, name);
-            pstmt.setFloat(2, rating);
-            pstmt.setString(3, filepath);
+           
+            pstmt.setString(2, filepath);
+            pstmt.setInt(3, id);
             pstmt.executeUpdate();
+            
+            for (Category category : categories) {
+                int categoryID = category.getId();
+                
+                String sql2 = "INSERT INTO MoviesOnCategories (CategoryId,MovieId) VALUES (?,?)";
+                PreparedStatement pstmt2 = con.prepareStatement(sql2);
+                pstmt2.setInt(1, categoryID);
+                pstmt2.setInt(2, id);
+                pstmt2.executeUpdate();
+            }
         } catch (SQLServerException ex) {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

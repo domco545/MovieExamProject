@@ -19,7 +19,7 @@ public interface Interface {
       public void addCategory(String name);
       public void addMovie(String name, String path, ArrayList<Category> selectedCategory);
       public void deleteMovie(int id);
-      public void updateMovie(int id, String name, float rating, String filepath);
+      public void updateMovie(int id, String name, String filepath,ArrayList<Category> categories);
       public void playedMovie(int id);
       public ArrayList<Category> getCategoriesByMovie(int movieid);
      
