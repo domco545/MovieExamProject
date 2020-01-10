@@ -67,7 +67,7 @@ public class AddMovieController implements Initializable {
     }    
 
     @FXML
-    private void addSong(ActionEvent event) {
+    private void addMovie(ActionEvent event) {
         if (chceckIfReady()) {
             String name = movieName.getText();
             String path = moviePath.getText();

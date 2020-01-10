@@ -9,7 +9,10 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,8 +24,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import movieexamproject.be.Category;
 import movieexamproject.be.Movie;
@@ -58,15 +63,34 @@ public class FXMLDocumentController implements Initializable {
     private Button addMovieBtn;
     @FXML
     private ListView<Category> categoryList;
+    @FXML
+    private Button editMovie;
+    @FXML
+    private TableColumn<Movie, String> collumTitle;
+    @FXML
+    private TableColumn<Movie, Float> collumRating;
+    @FXML
+    private TableColumn<Movie, Date> collumLastViewed;
      
     Interface in = new BllManager();
     private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
-    @FXML
-    private Button editMovie;
+    private ObservableList<Movie> obsMovie = FXCollections.observableArrayList();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        categoryList.setItems(obsCategories);
+       
+       collumTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
+       collumRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+       collumLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+       
+        categoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Category>() {
+        @Override
+        public void changed(ObservableValue<? extends Category> observable, Category oldValue, Category newValue) {
+             obsMovie = FXCollections.observableArrayList(categoryList.getSelectionModel().getSelectedItem().getAllMovies());
+             tableView.setItems(obsMovie);
+            }
+        });
     }    
     
 
@@ -93,10 +117,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void playBtnAction(ActionEvent event) throws IOException {
         
-       String path = tableView.getSelectionModel().getSelectedItem().getFilelink();
+      // String path = tableView.getSelectionModel().getSelectedItem().getFilelink();
 
         
-        File file = new File(path);
+        File file = new File("C:/Users/XMdag/Downloads/kungfury.mp4");
         
         //first check if Desktop is supported by Platform or not
         if(!Desktop.isDesktopSupported()){
@@ -144,9 +168,18 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void removeMovie(ActionEvent event) {
-        int id = tableView.getSelectionModel().getSelectedItem().getId();
-        in.deleteMovie(id);
+    private void removeMovie(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/RemoveMovie.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        RemoveMovieController rmc = loader.getController();
+        rmc.acceptMovie(tableView.getSelectionModel().getSelectedItem());
+                    
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
