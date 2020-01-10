@@ -15,5 +15,10 @@
       <Label layoutX="73.0" layoutY="61.0" prefHeight="29.0" prefWidth="265.0" text="Are you sure you want to delete this item?" />
       <Button fx:id="deleteBtn" layoutX="146.0" layoutY="103.0" mnemonicParsing="false" onAction="#delete" text="Yes" />
       <Button fx:id="cancelBtn" layoutX="198.0" layoutY="103.0" mnemonicParsing="false" onAction="#cancel" text="No" />
+      <Label fx:id="nameLbl" layoutX="269.0" layoutY="26.0" prefHeight="17.0" prefWidth="105.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

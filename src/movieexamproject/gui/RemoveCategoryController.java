@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import movieexamproject.be.Category;
 import movieexamproject.bll.BllManager;
 import movieexamproject.bll.Interface;
@@ -27,16 +28,18 @@ public class RemoveCategoryController implements Initializable {
     private Button deleteBtn;
     @FXML
     private Button cancelBtn;
-
+    @FXML
+    private Label nameLbl;
+    
     Interface in = new BllManager();
     Category category;
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
@@ -51,6 +54,7 @@ public class RemoveCategoryController implements Initializable {
     
     public void acceptCategory(Category category){
         this.category = category;
+        nameLbl.setText(this.category.getName());
     }
     
 }
