@@ -93,10 +93,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void playBtnAction(ActionEvent event) throws IOException {
         
-       String path = tableView.getSelectionModel().getSelectedItem().getFilelink();
+      // String path = tableView.getSelectionModel().getSelectedItem().getFilelink();
 
         
-        File file = new File(path);
+        File file = new File("C:/Users/XMdag/Downloads/kungfury.mp4");
         
         //first check if Desktop is supported by Platform or not
         if(!Desktop.isDesktopSupported()){
