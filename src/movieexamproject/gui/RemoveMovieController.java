@@ -13,16 +13,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import movieexamproject.be.Category;
+import movieexamproject.be.Movie;
 import movieexamproject.bll.BllManager;
 import movieexamproject.bll.Interface;
 
 /**
  * FXML Controller class
  *
- * @author saraf
+ * @author domin
  */
-public class RemoveCategoryController implements Initializable {
+public class RemoveMovieController implements Initializable {
 
     @FXML
     private Button deleteBtn;
@@ -30,21 +30,20 @@ public class RemoveCategoryController implements Initializable {
     private Button cancelBtn;
     @FXML
     private Label nameLbl;
-    
+
     Interface in = new BllManager();
-    Category category;
-
-
+    private Movie movie;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }    
 
     @FXML
     private void delete(ActionEvent event) {
-        in.deleteCategory(category.getId());
+        in.deleteMovie(movie.getId());
     }
 
     @FXML
@@ -52,9 +51,8 @@ public class RemoveCategoryController implements Initializable {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
     
-    public void acceptCategory(Category category){
-        this.category = category;
-        nameLbl.setText(this.category.getName());
+    public void acceptMovie(Movie movie){
+        this.movie = movie;
     }
     
 }

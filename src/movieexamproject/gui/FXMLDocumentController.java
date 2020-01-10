@@ -5,6 +5,8 @@
  */
 package movieexamproject.gui;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -89,21 +91,56 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void playBtnAction(ActionEvent event) {
+    private void playBtnAction(ActionEvent event) throws IOException {
+        
+       String path = tableView.getSelectionModel().getSelectedItem().getFilelink();
+
+        
+        File file = new File(path);
+        
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+        
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()) desktop.open(file);
+        
+
     }
+
+    
 
     @FXML
     private void searchBtnAction(ActionEvent event) {
     }
 
     @FXML
-    private void addCategory(ActionEvent event) {
+    private void addCategory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/AddCategory.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void removeCategory(ActionEvent event) {
-        int id = categoryList.getSelectionModel().getSelectedItem().getId();
-        in.deleteCategory(id);
+    private void removeCategory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/RemoveCategory.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        RemoveCategoryController rcc = loader.getController();
+        rcc.acceptCategory(categoryList.getSelectionModel().getSelectedItem());
+                    
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
