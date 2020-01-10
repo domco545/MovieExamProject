@@ -144,9 +144,18 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void removeMovie(ActionEvent event) {
-        int id = tableView.getSelectionModel().getSelectedItem().getId();
-        in.deleteMovie(id);
+    private void removeMovie(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/RemoveMovie.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        RemoveMovieController rmc = loader.getController();
+        rmc.acceptMovie(tableView.getSelectionModel().getSelectedItem());
+                    
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

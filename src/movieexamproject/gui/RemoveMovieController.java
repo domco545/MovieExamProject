@@ -53,6 +53,7 @@ public class RemoveMovieController implements Initializable {
     
     public void acceptMovie(Movie movie){
         this.movie = movie;
+        nameLbl.setText(movie.getName());
     }
     
 }
