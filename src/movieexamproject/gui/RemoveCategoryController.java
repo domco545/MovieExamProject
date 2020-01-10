@@ -30,9 +30,12 @@ public class RemoveCategoryController implements Initializable {
     private Button cancelBtn;
     @FXML
     private Label nameLbl;
+    @FXML
+    private Label errorLbl;
     
     Interface in = new BllManager();
     Category category;
+
 
 
     /**
@@ -44,7 +47,11 @@ public class RemoveCategoryController implements Initializable {
 
     @FXML
     private void delete(ActionEvent event) {
+        if(category.getId() == 1){
+            errorLbl.setText("You cannot remove All category");
+        }else{
         in.deleteCategory(category.getId());
+        }
     }
 
     @FXML
