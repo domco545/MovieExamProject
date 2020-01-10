@@ -55,12 +55,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button addMovieBtn;
     @FXML
-    private Button addMovieBtn1;
-    @FXML
     private ListView<Category> categoryList;
      
     Interface in = new BllManager();
     private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
+    @FXML
+    private Button editMovie;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
