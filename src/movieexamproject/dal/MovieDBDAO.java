@@ -45,7 +45,7 @@ public class MovieDBDAO {
             
             ResultSet rs = pstmt.getGeneratedKeys();
             while(rs.next()){
-               movieID = rs.getInt("id");
+               movieID = rs.getInt(1);
             }
             for (Category category : selectedCategory) {
                 int categoryID = category.getId();
