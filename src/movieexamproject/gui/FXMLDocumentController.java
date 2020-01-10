@@ -101,9 +101,18 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void removeCategory(ActionEvent event) {
-        int id = categoryList.getSelectionModel().getSelectedItem().getId();
-        in.deleteCategory(id);
+    private void removeCategory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/RemoveCategory.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        RemoveCategoryController rcc = loader.getController();
+        rcc.acceptCategory(categoryList.getSelectionModel().getSelectedItem());
+                    
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
