@@ -88,8 +88,8 @@ public class CategoryDBDAO {
                         Movie movie = new Movie(id,name,rating,filelink,lastview);
                         movies.add(movie);
                     } 
-                    category.acceptMovies(movies);
                     }
+                    category.acceptMovies(movies);
                 }
             return categories;
         } catch (SQLServerException ex) {

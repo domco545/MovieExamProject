@@ -11,10 +11,11 @@
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView fx:id="tableView" layoutX="134.0" layoutY="13.0" prefHeight="385.0" prefWidth="243.0">
+      <TableView fx:id="tableView" layoutX="134.0" layoutY="13.0" prefHeight="385.0" prefWidth="249.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="collumTitle" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="collumRating" prefWidth="75.0" text="Rating" />
+            <TableColumn fx:id="collumLastViewed" prefWidth="75.0" text="LastViewed" />
         </columns>
       </TableView>
       <Button fx:id="ratingBtn" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" onAction="#rateBtnAction" text="Rating" />

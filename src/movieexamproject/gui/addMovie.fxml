@@ -18,7 +18,7 @@
       </Text>
       <TextField fx:id="movieName" layoutX="87.0" layoutY="93.0" prefHeight="25.0" prefWidth="205.0" promptText="Name" />
       <TextField fx:id="moviePath" disable="true" layoutX="86.0" layoutY="163.0" prefHeight="25.0" prefWidth="205.0" promptText="Path" />
-      <Button fx:id="addMovie" layoutX="83.0" layoutY="199.0" mnemonicParsing="false" onAction="#addSong" text="Confirm" />
+      <Button fx:id="addMovie" layoutX="83.0" layoutY="199.0" mnemonicParsing="false" onAction="#addMovie" text="Confirm" />
       <Button fx:id="cancel" layoutX="240.0" layoutY="199.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
       <Button fx:id="chooseBtn" layoutX="293.0" layoutY="163.0" mnemonicParsing="false" onAction="#getPath" text="..." />
       <ChoiceBox fx:id="choicebox" layoutX="87.0" layoutY="130.0" prefWidth="150.0" />

@@ -42,6 +42,10 @@ public class Category {
    {
        this.moviesInCategory = moviesInCategory;
    }
+   
+   public ArrayList<Movie> getAllMovies(){
+        return moviesInCategory;
+    }
 
     @Override
     public String toString() {
