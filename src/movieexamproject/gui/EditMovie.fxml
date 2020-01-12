@@ -24,6 +24,6 @@
       <Button fx:id="CancelBtn" layoutX="146.0" layoutY="273.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
       <TextField fx:id="filepathTxt" editable="false" layoutX="48.0" layoutY="200.0" promptText="path" />
       <Button fx:id="filepathBtn" layoutX="172.0" layoutY="234.0" mnemonicParsing="false" onAction="#chooseFile" text="..." />
-      <Label fx:id="errorLabel" layoutX="20.0" layoutY="238.0" prefHeight="18.0" prefWidth="149.0" text="Label" />
+      <Label fx:id="errorLabel" layoutX="20.0" layoutY="238.0" prefHeight="18.0" prefWidth="149.0" />
    </children>
 </AnchorPane>
