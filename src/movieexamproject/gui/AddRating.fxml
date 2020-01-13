@@ -21,6 +21,6 @@
       <TextField fx:id="ratingField" layoutX="57.0" layoutY="103.0" promptText="rating" />
       <Button fx:id="addBtn" layoutX="57.0" layoutY="177.0" mnemonicParsing="false" onAction="#addRating" text="Add" />
       <Button fx:id="cancelBtn" layoutX="161.0" layoutY="177.0" mnemonicParsing="false" onAction="#cancelEvent" text="Cancel" />
-      <Label fx:id="errorlbl" layoutX="62.0" layoutY="142.0" text="Label" />
+      <Label fx:id="errorlbl" layoutX="62.0" layoutY="142.0" />
    </children>
 </AnchorPane>

@@ -52,13 +52,24 @@ public class AddRatingController implements Initializable {
     }
     @FXML
     private void addRating(ActionEvent event) {
-        if (Float.parseFloat( ratingField.getText())<1 || Float.parseFloat(ratingField.getText())>10)
+        float rating = 0;
+        
+        //check if input can be converted to float
+        //maybe change this to textfromatter in future
+        try{
+             rating = Float.parseFloat( ratingField.getText());
+        }catch(Exception e){
+            errorlbl.setText("invalid input");
+            return;
+        }
+        
+        if (rating <1 || rating >10)
         {
             errorlbl.setText("Invalid rating. Please rate between 1-10.");
         }
         else 
         {   
-            in.addRating(movie.getId(),Float.parseFloat(ratingField.getText()));
+            in.addRating(movie.getId(),rating);
             cancelEvent(event);
         }
     }
