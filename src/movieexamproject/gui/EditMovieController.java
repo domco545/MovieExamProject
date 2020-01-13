@@ -80,15 +80,14 @@ public class EditMovieController implements Initializable {
     {
         
         ArrayList<Category> currentCategories = in.getCategoriesByMovie(movie.getId());
+        
         obsSelected = FXCollections.observableArrayList(currentCategories);
         ListView.setItems(obsSelected);
         
         for (Category currentCategory : currentCategories) {
-            for (Category cat : temp) {
-                if(currentCategory.getId()==cat.getId())
-                    temp.remove(cat);
-            }
+            temp.removeIf((Category a) -> a.getId() == currentCategory.getId());
         }
+       
         obsChoicebox = FXCollections.observableArrayList(temp);
         choicebox.getItems().addAll(obsChoicebox);
         

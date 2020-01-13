@@ -132,9 +132,9 @@ public class CategoryDBDAO {
     public ArrayList<Category> getCategoriesByMovie(int movieid)
     {
         try(Connection con = ds.getConnection()) {
-            String sql="SELECT Category.id, Category.name, MoviesOnCategories.CategoryId FROM MoviesOnCategories  "
-                    + "LEFT JOIN Category ON MoviesOnCategories.CategoryId=Category.id"
-                    + "WHERE MoviesOnCategories.MovieId =?";
+            String sql="SELECT Category.id, Category.name, MoviesOnCategories.CategoryId,MoviesOnCategories.MovieId FROM MoviesOnCategories\n" +
+                       "LEFT JOIN Category ON MoviesOnCategories.CategoryId = Category.id\n" +
+                       "WHERE MoviesOnCategories.MovieId = ?";
             ArrayList<Category> categories = new ArrayList();
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, movieid);
