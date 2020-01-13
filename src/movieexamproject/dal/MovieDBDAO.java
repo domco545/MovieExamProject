@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import movieexamproject.be.Category;
 import java.sql.*;
+import movieexamproject.be.Movie;
 
 /**
  *
@@ -130,5 +131,34 @@ public class MovieDBDAO {
         } catch (SQLException ex) {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    }
+    public ArrayList<Movie> getMoviesByTilteAndRatings(String title, int rating){
+        try {
+            Connection con = ds.getConnection();
+            String sql="SELECT * FROM Movie"
+                    + "WHERE movie.name LIKE '%?%' AND moive.rating >=? AND movie.rating < (?+1);";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, title);
+            pstmt.setFloat(2, rating);
+            pstmt.setFloat(3, rating);
+            ResultSet rs = pstmt.executeQuery();
+            
+            ArrayList<Movie> movies = new ArrayList();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                float rate = rs.getFloat("rating");
+                String filePath = rs.getString("filePath");
+                Date lastView = rs.getDate("lastView");
+                Movie m = new Movie(id, name, rate, filePath, lastView);
+                movies.add(m);
+            }
+            return movies;
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
