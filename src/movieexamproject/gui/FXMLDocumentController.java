@@ -111,7 +111,19 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void rateBtnAction(ActionEvent event) {
+    private void rateBtnAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/AddRating.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        AddRatingController arc = loader.getController();
+        arc.acceptData(tableView.getSelectionModel().getSelectedItem());
+        
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+        
+        
     }
 
     @FXML

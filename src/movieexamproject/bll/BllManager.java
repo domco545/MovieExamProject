@@ -113,6 +113,11 @@ public class BllManager implements Interface{
         
         //request to dal layer
     }
+
+    @Override
+    public void addRating(int movieid, float rating) {
+        moviedao.addRating(movieid, rating);
+    }
         
      
      

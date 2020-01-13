@@ -117,4 +117,18 @@ public class MovieDBDAO {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void addRating(int movieid, float rating)
+    {
+        try(Connection con = ds.getConnection()) {
+            String sql="UPDATE Movie SET rating = ? WHERE id=? ";
+             PreparedStatement pstmt = con.prepareStatement(sql);
+             pstmt.setFloat(1, rating);
+             pstmt.setInt(2, movieid);
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
 }

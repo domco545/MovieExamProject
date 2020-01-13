@@ -71,7 +71,7 @@ public class EditMovieController implements Initializable {
     public void acceptData(Movie movie, ObservableList<Category> allCategories)
     {
         this.movie= movie;
-        editMovietxt.setText(movie.getName());
+        editMovietxt.setText(this.movie.getName());
         
         temp = new ArrayList<Category>(allCategories);
         filterChoicebox();

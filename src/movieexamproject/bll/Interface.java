@@ -24,5 +24,6 @@ public interface Interface {
       public void playedMovie(int id);
       public ArrayList<Category> getCategoriesByMovie(int movieid);
       public void fetchAllFromOmdb(ArrayList<Movie> allMovies);
+      public void addRating(int movieid, float rating);
      
 }
