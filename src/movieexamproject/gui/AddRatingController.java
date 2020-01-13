@@ -54,7 +54,8 @@ public class AddRatingController implements Initializable {
             errorlbl.setText("Invalid rating. Please rate between 0-10.");
         }
         else 
-        {   movie.setRating(Integer.parseInt(ratingField.getText()));
+        {   
+            movie.setRating(Integer.parseInt(ratingField.getText()));
             cancelEvent(event);
         }
     }

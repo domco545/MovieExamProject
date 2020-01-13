@@ -16,6 +16,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import movieexamproject.be.Category;
 import movieexamproject.be.Movie;
 import movieexamproject.bll.BllManager;
@@ -108,6 +110,13 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
     }
 
     @FXML
@@ -122,6 +131,13 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
         
         
     }
@@ -208,6 +224,14 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    
+    public void init(){
+        obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
+        categoryList.setItems(obsCategories);
+        categoryList.getSelectionModel().select(0);
+        obsMovie = FXCollections.observableArrayList(categoryList.getSelectionModel().getSelectedItem().getAllMovies());
+        tableView.setItems(obsMovie);
     }
+}
     
 
