@@ -137,9 +137,7 @@ public class FXMLDocumentController implements Initializable {
             public void handle(WindowEvent event) {
                 init();
             }
-        });
-        
-        
+        });   
     }
 
     @FXML
@@ -152,14 +150,11 @@ public class FXMLDocumentController implements Initializable {
         
         //first check if Desktop is supported by Platform or not
         if(!Desktop.isDesktopSupported()){
-            System.out.println("Desktop is not supported");
             return;
         }
         
         Desktop desktop = Desktop.getDesktop();
         if(file.exists()) desktop.open(file);
-        
-
     }
 
     
@@ -178,6 +173,13 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
     }
 
     @FXML
@@ -193,6 +195,13 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
     }
 
     @FXML
@@ -208,6 +217,13 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
     }
 
     @FXML
@@ -223,6 +239,13 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+        
+        stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
     }
     
     public void init(){
