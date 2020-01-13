@@ -54,12 +54,12 @@ public class AddRatingController implements Initializable {
     private void addRating(ActionEvent event) {
         if (Float.parseFloat( ratingField.getText())<1 || Float.parseFloat(ratingField.getText())>10)
         {
-            errorlbl.setText("Invalid rating. Please rate between 0-10.");
+            errorlbl.setText("Invalid rating. Please rate between 1-10.");
         }
         else 
-        {   in.addRating(movie.getId(),Float.parseFloat(ratingField.getText()));
+        {   
+            in.addRating(movie.getId(),Float.parseFloat(ratingField.getText()));
             cancelEvent(event);
-            
         }
     }
 
