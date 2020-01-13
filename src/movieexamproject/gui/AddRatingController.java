@@ -15,6 +15,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import movieexamproject.be.Movie;
+import movieexamproject.bll.BllManager;
+import movieexamproject.bll.Interface;
 
 /**
  * FXML Controller class
@@ -37,6 +39,7 @@ public class AddRatingController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    Interface in = new BllManager();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -49,13 +52,14 @@ public class AddRatingController implements Initializable {
     }
     @FXML
     private void addRating(ActionEvent event) {
-        if (Integer.parseInt( ratingField.getText())<1 || Integer.parseInt( ratingField.getText())>10)
+        if (Float.parseFloat( ratingField.getText())<1 || Float.parseFloat(ratingField.getText())>10)
         {
             errorlbl.setText("Invalid rating. Please rate between 0-10.");
         }
         else 
-        {   movie.setRating(Integer.parseInt(ratingField.getText()));
+        {   in.addRating(movie.getId(),Float.parseFloat(ratingField.getText()));
             cancelEvent(event);
+            
         }
     }
 
