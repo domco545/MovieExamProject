@@ -18,6 +18,8 @@ public class Movie {
     private float rating;
     private String filelink;
     private Date lastview;
+    private String ImdbLink;
+    private float ImdbRating;
 
     public Movie(int id, String name, float rating, String filelink, Date lastview)
     {
@@ -67,11 +69,24 @@ public class Movie {
         this.lastview = lastview;
     }
 
+    public String getImdbLink() {
+        return ImdbLink;
+    }
+
+    public void setImdbLink(String ImdbLink) {
+        this.ImdbLink = ImdbLink;
+    }
+
+    public float getImdbRating() {
+        return ImdbRating;
+    }
+
+    public void setImdbRating(float ImdbRating) {
+        this.ImdbRating = ImdbRating;
+    }
+
     @Override
     public String toString() {
         return name+" "+lastview; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
 }

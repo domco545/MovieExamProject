@@ -270,7 +270,17 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void openDetail(ActionEvent event) {
+    private void openDetail(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/MovieInfo.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        
+        MovieInfoController mic = loader.getController();
+        mic.getImdbLink(tableView.getSelectionModel().getSelectedItem().getImdbLink());
+        
+        stage.setScene(scene);
+        stage.show();
     }
 }
     
