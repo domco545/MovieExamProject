@@ -73,15 +73,15 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Movie, Float> collumRating;
     @FXML
     private TableColumn<Movie, Date> collumLastViewed;
-     
+    @FXML
+    private Button detailBtn;
+    
     Interface in = new BllManager();
     private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
     private ObservableList<Movie> obsMovie = FXCollections.observableArrayList();
     private ObservableList<Movie> searchResults = FXCollections.observableArrayList();
-    @FXML
-    private Button detailBtn;
-    
-    
+    private boolean searching;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        categoryList.setItems(obsCategories);
@@ -165,16 +165,24 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchBtnAction(ActionEvent event) {
-        if(categoryList.getSelectionModel().getSelectedItem().getId()==1)
-        {searchResults=FXCollections.observableArrayList(in.getMoviesByTilteAndRatings(searchField.getText())) ;
-            tableView.setItems(searchResults);
+        if(searching == false){        
+            if(categoryList.getSelectionModel().getSelectedItem().getId()==1){
+                searchResults=FXCollections.observableArrayList(in.getMoviesByTilteAndRatings(searchField.getText())) ;
+                tableView.setItems(searchResults);
+            }
+            else{
+                searchResults = FXCollections.observableArrayList(in.getMoviesByTilteAndRatingsOnCategory(searchField.getText(),categoryList.getSelectionModel().getSelectedItem().getId()));
+                tableView.setItems(searchResults);
+            }
+            searchBtn.setText("Cancel");
+            searching = true;
+        }else{
+            tableView.setItems(obsMovie);
+            searchBtn.setText("Search");
+            searchField.clear();
+            searching = false;
         }
-        else
-        {
-            searchResults = FXCollections.observableArrayList(in.getMoviesByTilteAndRatingsOnCategory(searchField.getText(),categoryList.getSelectionModel().getSelectedItem().getId()));
-            tableView.setItems(searchResults);
-        }
-        }
+    }
 
     @FXML
     private void addCategory(ActionEvent event) throws IOException {
