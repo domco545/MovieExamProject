@@ -97,6 +97,7 @@ public class FXMLDocumentController implements Initializable {
              tableView.setItems(obsMovie);
             }
         });
+        categoryList.getSelectionModel().selectFirst();
     }    
     
 
