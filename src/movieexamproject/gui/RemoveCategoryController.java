@@ -51,6 +51,7 @@ public class RemoveCategoryController implements Initializable {
             errorLbl.setText("You cannot remove All category");
         }else{
         in.deleteCategory(category.getId());
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         }
     }
 
