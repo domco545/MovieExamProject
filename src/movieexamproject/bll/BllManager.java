@@ -118,6 +118,17 @@ public class BllManager implements Interface{
     public void addRating(int movieid, float rating) {
         moviedao.addRating(movieid, rating);
     }
+
+    @Override
+    public ArrayList<Movie> getMoviesByTilteAndRatings(String query) {
+       return moviedao.getMoviesByTilteAndRatings(query);
+    }
+
+    @Override
+    public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId) {
+       return moviedao.getMoviesByTilteAndRatingsOnCategory(query, categoryId);
+    
+    }
         
      
      

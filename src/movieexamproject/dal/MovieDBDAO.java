@@ -160,7 +160,7 @@ public class MovieDBDAO {
         return null;
     }
     
-    public ArrayList<Movie> getMoviesByTilteAndRatingsOnPlaylist(String query, int categoryId){
+    public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId){
          try {
             Connection con = ds.getConnection();
             String sql="SELECT Movie.id, Movie.name, Movie.rating, \n" +

@@ -77,6 +77,10 @@ public class FXMLDocumentController implements Initializable {
     Interface in = new BllManager();
     private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
     private ObservableList<Movie> obsMovie = FXCollections.observableArrayList();
+    private ObservableList<Movie> searchResults = FXCollections.observableArrayList();
+    @FXML
+    private Button detailBtn;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -161,7 +165,16 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchBtnAction(ActionEvent event) {
-    }
+        if(categoryList.getSelectionModel().getSelectedItem().getId()==1)
+        {searchResults=FXCollections.observableArrayList(in.getMoviesByTilteAndRatings(searchField.getText())) ;
+            tableView.setItems(searchResults);
+        }
+        else
+        {
+            searchResults = FXCollections.observableArrayList(in.getMoviesByTilteAndRatingsOnCategory(searchField.getText(),categoryList.getSelectionModel().getSelectedItem().getId()));
+            tableView.setItems(searchResults);
+        }
+        }
 
     @FXML
     private void addCategory(ActionEvent event) throws IOException {
@@ -254,6 +267,10 @@ public class FXMLDocumentController implements Initializable {
         categoryList.getSelectionModel().select(0);
         obsMovie = FXCollections.observableArrayList(categoryList.getSelectionModel().getSelectedItem().getAllMovies());
         tableView.setItems(obsMovie);
+    }
+
+    @FXML
+    private void openDetail(ActionEvent event) {
     }
 }
     

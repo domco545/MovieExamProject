@@ -25,5 +25,7 @@ public interface Interface {
       public ArrayList<Category> getCategoriesByMovie(int movieid);
       public void fetchAllFromOmdb(ArrayList<Movie> allMovies);
       public void addRating(int movieid, float rating);
+      public ArrayList<Movie> getMoviesByTilteAndRatings(String query);
+      public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId);
      
 }
