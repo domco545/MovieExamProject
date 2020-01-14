@@ -18,8 +18,8 @@ public class Movie {
     private float rating;
     private String filelink;
     private Date lastview;
-    private String ImdbLink;
-    private float ImdbRating;
+    private String ImdbLink = "";
+    private float ImdbRating = 0;
 
     public Movie(int id, String name, float rating, String filelink, Date lastview)
     {

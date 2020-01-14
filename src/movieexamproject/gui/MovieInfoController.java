@@ -33,6 +33,10 @@ public class MovieInfoController implements Initializable {
     }  
     
     public void getImdbLink(String link){
-        engine.load(link);
+        if(link.isEmpty()){
+            engine.loadContent("<html><body><h1>Data not fetched or movie name does not corespond to any movie in imdb</h1></body></html>");
+        }else{
+            engine.load(link);
+        }
     }
 }
