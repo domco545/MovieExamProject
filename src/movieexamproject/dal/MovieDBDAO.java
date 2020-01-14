@@ -132,15 +132,45 @@ public class MovieDBDAO {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-    public ArrayList<Movie> getMoviesByTilteAndRatings(String title, int rating){
+    public ArrayList<Movie> getMoviesByTilteAndRatings(String query){
         try {
             Connection con = ds.getConnection();
-            String sql="SELECT * FROM Movie"
-                    + "WHERE movie.name LIKE '%?%' AND moive.rating >=? AND movie.rating < (?+1);";
+            String sql="SELECT * FROM Movie WHERE name LIKE ? OR rating LIKE ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, title);
-            pstmt.setFloat(2, rating);
-            pstmt.setFloat(3, rating);
+            pstmt.setString(1, "%"+query+"%");
+            pstmt.setString(2, "%"+query+"%");
+            ResultSet rs = pstmt.executeQuery();
+            
+            ArrayList<Movie> movies = new ArrayList();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                float rate = rs.getFloat("rating");
+                String filePath = rs.getString("filePath");
+                Date lastView = rs.getDate("lastView");
+                Movie m = new Movie(id, name, rate, filePath, lastView);
+                movies.add(m);
+            }
+            return movies;
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<Movie> getMoviesByTilteAndRatingsOnPlaylist(String query, int categoryId){
+         try {
+            Connection con = ds.getConnection();
+            String sql="SELECT Movie.id, Movie.name, Movie.rating, \n" +
+                       "Movie.lastview, Movie.filepath FROM MoviesOnCategories\n" +
+                       "LEFT JOIN Movie ON MoviesOnCategories.MovieId = Movie.id\n" +
+                       "WHERE MoviesOnCategories.CategoryId=? AND (Movie.name LIKE ? OR Movie.rating LIKE ?)";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, categoryId);
+            pstmt.setString(2, "%"+query+"%");
+            pstmt.setString(3, "%"+query+"%");
             ResultSet rs = pstmt.executeQuery();
             
             ArrayList<Movie> movies = new ArrayList();
