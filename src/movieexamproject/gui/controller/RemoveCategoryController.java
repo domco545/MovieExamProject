@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package movieexamproject.gui;
+package movieexamproject.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import movieexamproject.be.Category;
 import movieexamproject.bll.BllManager;
 import movieexamproject.bll.Interface;
 
@@ -22,40 +22,47 @@ import movieexamproject.bll.Interface;
  *
  * @author saraf
  */
-public class AddCategoryController implements Initializable {
+public class RemoveCategoryController implements Initializable {
 
     @FXML
-    private Label errorLabel;
-    @FXML
-    private TextField nameText;
-    @FXML
-    private Button addBtn;
+    private Button deleteBtn;
     @FXML
     private Button cancelBtn;
-
+    @FXML
+    private Label nameLbl;
+    @FXML
+    private Label errorLbl;
+    
     Interface in = new BllManager();
+    Category category;
+
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
-    private void addCategory(ActionEvent event) {
-        if(nameText.getText() == null || nameText.getText().trim().isEmpty()){
-            errorLabel.setText("Please set the name");
+    private void delete(ActionEvent event) {
+        if(category.getId() == 1){
+            errorLbl.setText("You cannot remove All category");
         }else{
-            in.addCategory(nameText.getText());
-            cancel(event);
+        in.deleteCategory(category.getId());
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         }
     }
 
     @FXML
     private void cancel(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+    
+    public void acceptCategory(Category category){
+        this.category = category;
+        nameLbl.setText(this.category.getName());
     }
     
 }

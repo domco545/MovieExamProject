@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="173.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.RemoveCategoryController">
+<AnchorPane id="AnchorPane" prefHeight="173.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.controller.RemoveMovieController">
    <children>
-      <Label layoutX="118.0" layoutY="19.0" prefHeight="42.0" prefWidth="151.0" text="Remove Category">
+      <Label layoutX="118.0" layoutY="19.0" prefHeight="42.0" prefWidth="151.0" text="Remove Movie">
          <font>
             <Font size="18.0" />
          </font>
@@ -20,6 +20,5 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="errorLbl" layoutX="146.0" layoutY="142.0" prefHeight="17.0" prefWidth="85.0" />
    </children>
 </AnchorPane>

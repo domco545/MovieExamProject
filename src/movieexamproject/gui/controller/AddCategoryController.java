@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package movieexamproject.gui;
+package movieexamproject.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,26 +13,28 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import movieexamproject.be.Movie;
+import javafx.scene.control.TextField;
 import movieexamproject.bll.BllManager;
 import movieexamproject.bll.Interface;
 
 /**
  * FXML Controller class
  *
- * @author domin
+ * @author saraf
  */
-public class RemoveMovieController implements Initializable {
+public class AddCategoryController implements Initializable {
 
     @FXML
-    private Button deleteBtn;
+    private Label errorLabel;
+    @FXML
+    private TextField nameText;
+    @FXML
+    private Button addBtn;
     @FXML
     private Button cancelBtn;
-    @FXML
-    private Label nameLbl;
 
     Interface in = new BllManager();
-    private Movie movie;
+
     /**
      * Initializes the controller class.
      */
@@ -42,18 +44,18 @@ public class RemoveMovieController implements Initializable {
     }    
 
     @FXML
-    private void delete(ActionEvent event) {
-        in.deleteMovie(movie.getId());
+    private void addCategory(ActionEvent event) {
+        if(nameText.getText() == null || nameText.getText().trim().isEmpty()){
+            errorLabel.setText("Please set the name");
+        }else{
+            in.addCategory(nameText.getText());
+            cancel(event);
+        }
     }
 
     @FXML
     private void cancel(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
-    }
-    
-    public void acceptMovie(Movie movie){
-        this.movie = movie;
-        nameLbl.setText(movie.getName());
     }
     
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="271.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.AddRatingController">
+<AnchorPane id="AnchorPane" prefHeight="271.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.controller.AddRatingController">
    <children>
       <Label layoutX="57.0" layoutY="42.0" text="Add Rating for">
          <font>

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="movieexamproject.gui.OldMoviePopUpController">
+<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="movieexamproject.gui.controller.OldMoviePopUpController">
    <children>
       <Button layoutX="115.0" layoutY="373.0" mnemonicParsing="false" text="Delete" />
       <Button layoutX="427.0" layoutY="373.0" mnemonicParsing="false" text="Cancel" />
