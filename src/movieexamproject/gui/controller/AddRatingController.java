@@ -49,6 +49,7 @@ public class AddRatingController implements Initializable {
     {
         this.movie=movie;
         currentMovieLbl.setText(movie.getName());
+        ratingField.setText(Float.toString(movie.getRating()));
     }
     @FXML
     private void addRating(ActionEvent event) {
@@ -58,6 +59,7 @@ public class AddRatingController implements Initializable {
         //maybe change this to textfromatter in future
         try{
              rating = Float.parseFloat( ratingField.getText());
+             rating = (float) (Math.round(rating*10)/10.0);
         }catch(Exception e){
             errorlbl.setText("invalid input");
             return;
