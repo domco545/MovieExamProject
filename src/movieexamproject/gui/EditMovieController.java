@@ -74,7 +74,9 @@ public class EditMovieController implements Initializable {
         editMovietxt.setText(this.movie.getName());
         
         temp = new ArrayList<Category>(allCategories);
+        temp.remove(0);
         filterChoicebox();
+        choicebox.getSelectionModel().selectFirst();
     }
     public void filterChoicebox()
     {
@@ -95,12 +97,13 @@ public class EditMovieController implements Initializable {
 
     @FXML
     private void removeCategory(ActionEvent event) {
-        Category temp =   ListView.getSelectionModel().getSelectedItem();
+        Category temp = ListView.getSelectionModel().getSelectedItem();
         obsSelected.remove(temp);
         ListView.setItems(obsSelected);
         obsChoicebox.add(temp);
+        choicebox.getItems().clear();
         choicebox.getItems().addAll(obsChoicebox);
-        
+        choicebox.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -111,20 +114,21 @@ public class EditMovieController implements Initializable {
       ListView.setItems(obsSelected);
       choicebox.getItems().clear();
       choicebox.getItems().addAll(obsChoicebox);
+      choicebox.getSelectionModel().selectFirst();
       if (obsChoicebox.isEmpty()) {
             addCategoryBtn.setDisable(true);
         }
-      
     }
 
     @FXML
     private void confirmAndSave(ActionEvent event) {
-        String name = editMovietxt.getText();
+        if(chceckIfReady()){
+            String name = editMovietxt.getText();
             String filepath = filepathTxt.getText();
             ArrayList<Category> selected = new ArrayList<Category>(obsSelected);
             in.updateMovie(movie.getId(),name,filepath ,selected);
             cancel(event);
-        
+        }
     }
 
     @FXML
@@ -145,6 +149,20 @@ public class EditMovieController implements Initializable {
         }    
     }
     
-  
-    
+        private boolean chceckIfReady(){
+        //checking if every field is filled
+        if(filepathTxt.getText() == null || filepathTxt.getText().trim().isEmpty()){
+            errorLabel.setText("Please choose the file path");
+            return false;
+        }else 
+        if(editMovietxt.getText() == null || editMovietxt.getText().trim().isEmpty()){
+            errorLabel.setText("Please enter the movie name");
+            return false;
+       }else
+        if(obsSelected.isEmpty()){
+            errorLabel.setText("Please select at least one category");
+            return false;
+        }
+        return true;
+    }
 }
