@@ -81,37 +81,48 @@ public class BllManager implements Interface{
     @Override
     public void fetchAllFromOmdb(ArrayList<Movie> allMovies) {
         ArrayList<WebData> webdata = new ArrayList();
+        float imdbRating;
+        String imdb;
         for (Movie movie : allMovies) {
             try {
                 String s = omdbapi.sendGET(movie.getName());
                 JSONObject json = (JSONObject) parser.parse(s);
                 
-                int imdbRating = (Integer) json.get("imdbRating");
-                String imdb = (String) json.get("imdbID");
-                String imdbLink = "https://www.imdb.com/title/"+imdb;
+                try{
+                    imdbRating = (Float) json.get("imdbRating");
+                    imdb = (String) json.get("imdbID");
+                    String imdbLink = "https://www.imdb.com/title/"+imdb;
                 
-                WebData data = new WebData(movie.getId(),imdbRating,imdbLink);
-                webdata.add(data);
-                
+                    WebData data = new WebData(movie.getId(),imdbRating,imdbLink);
+                    webdata.add(data);
+                }catch(Exception e){
+                    
+                }   
             } catch (IOException ex) {
                 Logger.getLogger(BllManager.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
                 Logger.getLogger(BllManager.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        //request to dal layer
+        moviedao.addAllOmdb(webdata);
     }
     
+    @Override
     public void fetchOneFromOmdb(Movie m) throws IOException, ParseException{
         String s = omdbapi.sendGET(m.getName());
         JSONObject json = (JSONObject) parser.parse(s);
-
-        int imdbRating = (Integer) json.get("imdbRating");
-        String imdb = (String) json.get("imdbID");
-        String imdbLink = "https://www.imdb.com/title/"+imdb;
-        WebData data = new WebData(m.getId(),imdbRating,imdbLink);
         
-        //request to dal layer
+        try{
+            float imdbRating = (Float) json.get("imdbRating");
+            String imdb = (String) json.get("imdbID");
+            String imdbLink = "https://www.imdb.com/title/"+imdb;
+            WebData data = new WebData(m.getId(),imdbRating,imdbLink);
+            
+            System.out.println("adding to db"+imdb);
+            moviedao.addOneOmdb(data);
+        }catch(Exception e){
+            System.out.println("error while parsing json");
+        }
     }
 
     @Override
@@ -129,7 +140,4 @@ public class BllManager implements Interface{
        return moviedao.getMoviesByTilteAndRatingsOnCategory(query, categoryId);
     
     }
-        
-     
-     
 }

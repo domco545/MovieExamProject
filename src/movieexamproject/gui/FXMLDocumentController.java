@@ -35,6 +35,7 @@ import movieexamproject.be.Category;
 import movieexamproject.be.Movie;
 import movieexamproject.bll.BllManager;
 import movieexamproject.bll.Interface;
+import org.json.simple.parser.ParseException;
 
 /**
  * FXML Controller class
@@ -290,6 +291,18 @@ public class FXMLDocumentController implements Initializable {
         
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void fetchOneBtn(ActionEvent event) throws IOException, ParseException {
+        Movie m = tableView.getSelectionModel().getSelectedItem();
+        
+        in.fetchOneFromOmdb(m);
+    }
+
+    @FXML
+    private void fetchAllBtn(ActionEvent event) {
+        in.fetchAllFromOmdb(categoryList.getItems().get(0).getAllMovies());
     }
 }
     

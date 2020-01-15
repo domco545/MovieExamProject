@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import movieexamproject.be.Category;
 import java.sql.*;
 import movieexamproject.be.Movie;
+import movieexamproject.be.WebData;
 
 /**
  *
@@ -214,5 +215,37 @@ public class MovieDBDAO {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public void addOneOmdb(WebData data){
+        try(Connection con = ds.getConnection()){
+            String sql = "UPDATE Movie SET imdbRating = ?, imdbLink = ? WHERE id = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setFloat(1, data.getImdbRating());
+            pstmt.setString(2, data.getImdbLink());
+            pstmt.setInt(3, data.getMovieId());
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void addAllOmdb(ArrayList<WebData> data){
+        try(Connection con = ds.getConnection()){
+            for (WebData webData : data) {
+                String sql = "UPDATE Movie SET imdbRating = ?, imdbLink = ? WHERE id = ?";
+                PreparedStatement pstmt = con.prepareStatement(sql);
+                pstmt.setFloat(1, webData.getImdbRating());
+                pstmt.setString(2, webData.getImdbLink());
+                pstmt.setInt(3, webData.getMovieId());
+                pstmt.executeUpdate();
+            }
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

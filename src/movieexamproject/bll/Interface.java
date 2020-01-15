@@ -5,10 +5,12 @@
  */
 package movieexamproject.bll;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import movieexamproject.be.Category;
 import movieexamproject.be.Movie;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -24,8 +26,8 @@ public interface Interface {
       public void playedMovie(int id);
       public ArrayList<Category> getCategoriesByMovie(int movieid);
       public void fetchAllFromOmdb(ArrayList<Movie> allMovies);
+      public void fetchOneFromOmdb(Movie m)throws IOException, ParseException;
       public void addRating(int movieid, float rating);
       public ArrayList<Movie> getMoviesByTilteAndRatings(String query);
       public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId);
-     
 }

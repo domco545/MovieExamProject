@@ -11,10 +11,10 @@ package movieexamproject.be;
  */
 public class WebData {
     private int movieId;
-    private int imdbRating;
+    private float imdbRating;
     private String imdbLink;
 
-    public WebData(int movieId, int imdbRating, String imdbLink) {
+    public WebData(int movieId, float imdbRating, String imdbLink) {
         this.movieId = movieId;
         this.imdbRating = imdbRating;
         this.imdbLink = imdbLink;
@@ -28,7 +28,7 @@ public class WebData {
         this.movieId = movieId;
     }
 
-    public int getImdbRating() {
+    public float getImdbRating() {
         return imdbRating;
     }
 

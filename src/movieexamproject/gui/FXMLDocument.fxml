@@ -31,5 +31,8 @@
       <Label layoutX="459.0" layoutY="418.0" text="Movie" />
       <Button fx:id="editMovie" layoutX="503.0" layoutY="441.0" mnemonicParsing="false" onAction="#editMovie" text="Edit" />
       <Button fx:id="detailBtn" layoutX="408.0" layoutY="125.0" mnemonicParsing="false" onAction="#openDetail" text="Detail" />
+      <Button layoutX="397.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchOneBtn" text="Fetch one" />
+      <Button layoutX="471.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchAllBtn" text="Fetch all" />
+      <Label layoutX="451.0" layoutY="268.0" text="Imdb data" />
     </children>
 </AnchorPane>
