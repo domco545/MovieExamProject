@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -26,5 +27,6 @@
       <Text layoutX="408.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies to Delete" />
       <Button fx:id="AddMovieBtn" layoutX="274.0" layoutY="159.0" mnemonicParsing="false" onAction="#addMovieAction" text="Add -&gt;" />
       <Button fx:id="RemoveMovieBtn" layoutX="262.0" layoutY="216.0" mnemonicParsing="false" onAction="#removeMovieBtn" text="&lt;- Remove" />
+      <Label fx:id="errorLbl" layoutX="179.0" layoutY="376.0" prefHeight="18.0" prefWidth="239.0" textFill="RED" />
    </children>
 </AnchorPane>

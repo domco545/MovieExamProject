@@ -279,7 +279,7 @@ public class FXMLDocumentController implements Initializable {
     }
     public void oldMoviePopUp()
     {
-      if(in.getMoviesToDelete()!=null)
+      if(in.getMoviesToDelete().equals(null))
         {
             try{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/view/OldMoviePopUp.fxml"));

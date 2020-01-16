@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import movieexamproject.be.Movie;
 import movieexamproject.bll.BllManager;
@@ -44,6 +45,8 @@ public class OldMoviePopUpController implements Initializable {
     private ObservableList<Movie> obsSelected = FXCollections.observableArrayList();
      Movie movie;
      Interface in = new BllManager();
+    @FXML
+    private Label errorLbl;
     /**
      * Initializes the controller class.
      */
@@ -61,9 +64,17 @@ public class OldMoviePopUpController implements Initializable {
     @FXML
     private void deleteBtn(ActionEvent event) {
         
-        in.deleteAllMovies(obsSelectedToRemove);
-        ((Node) (event.getSource())).getScene().getWindow().hide();
         
+        if(obsSelectedToRemove.isEmpty())
+        {
+            errorLbl.setText("Please select a movie or press cancel");
+        }
+        else
+        {
+            in.deleteAllMovies(obsSelectedToRemove);
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        }
+       
     }
 
     @FXML
