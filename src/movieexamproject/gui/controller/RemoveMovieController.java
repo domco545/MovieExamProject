@@ -18,7 +18,7 @@ import movieexamproject.bll.Interface;
 /**
  * FXML Controller class
  *
- * @author Gentlemen.
+ * @author Gentleman.
  */
 public class RemoveMovieController implements Initializable {
 
