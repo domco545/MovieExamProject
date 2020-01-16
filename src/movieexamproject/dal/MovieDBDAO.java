@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import movieexamproject.be.Category;
 import java.sql.*;
+import java.util.List;
 import movieexamproject.be.Movie;
 import movieexamproject.be.WebData;
 
@@ -64,7 +65,12 @@ public class MovieDBDAO {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public void deleteAllMovies(List<Movie> obsSelected)
+    {
+        for (Movie movie : obsSelected) {
+            deleteMovie(movie.getId());
+        }
+    }
     public void deleteMovie(int id){
         try(Connection con = ds.getConnection()){
             String sql = "DELETE FROM Movie WHERE id = ?;"

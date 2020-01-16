@@ -8,6 +8,7 @@ package movieexamproject.bll;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 import movieexamproject.be.Category;
 import movieexamproject.be.Movie;
 import org.json.simple.parser.ParseException;
@@ -30,4 +31,7 @@ public interface Interface {
       public void addRating(int movieid, float rating);
       public ArrayList<Movie> getMoviesByTilteAndRatings(String query);
       public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId);
+      public ArrayList<Movie> getMoviesToDelete();
+
+    public void deleteAllMovies(List<Movie> obsSelected);
 }

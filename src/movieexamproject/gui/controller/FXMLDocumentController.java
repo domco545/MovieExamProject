@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -81,10 +83,14 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<Category> obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
     private ObservableList<Movie> obsMovie = FXCollections.observableArrayList();
     private ObservableList<Movie> searchResults = FXCollections.observableArrayList();
+    private ObservableList<Movie> obsMoviesToDelete = FXCollections.observableArrayList(in.getMoviesToDelete());
     private boolean searching;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+           
+        
+        
        categoryList.setItems(obsCategories);
        
        collumTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -99,6 +105,7 @@ public class FXMLDocumentController implements Initializable {
             }
         });
         categoryList.getSelectionModel().selectFirst();
+        oldMoviePopUp();
     }    
     
 
@@ -270,13 +277,44 @@ public class FXMLDocumentController implements Initializable {
             }
         });
     }
-    
+    public void oldMoviePopUp()
+    {
+      if(in.getMoviesToDelete()!=null)
+        {
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/view/OldMoviePopUp.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        
+        OldMoviePopUpController c = loader.getController();
+        c.acceptData(obsMoviesToDelete);
+                    
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+                    stage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                init();
+            }
+        });
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+        } 
+    }
     public void init(){
         obsCategories = FXCollections.observableArrayList(in.getAllCatergories());
         categoryList.setItems(obsCategories);
         categoryList.getSelectionModel().select(0);
         obsMovie = FXCollections.observableArrayList(categoryList.getSelectionModel().getSelectedItem().getAllMovies());
         tableView.setItems(obsMovie);
+        
+        
+        
     }
 
     @FXML

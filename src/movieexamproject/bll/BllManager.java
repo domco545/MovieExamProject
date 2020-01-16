@@ -140,4 +140,14 @@ public class BllManager implements Interface{
        return moviedao.getMoviesByTilteAndRatingsOnCategory(query, categoryId);
     
     }
+
+    @Override
+    public ArrayList<Movie> getMoviesToDelete() {
+        return moviedao.getMoviesToDelete();
+    }
+
+    @Override
+    public void deleteAllMovies(List<Movie> obsSelected) {
+         moviedao.deleteAllMovies(obsSelected);
+    }
 }
