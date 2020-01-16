@@ -1,8 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Gentlemen Group
+ * This controller is for home panel whereis fo main activity for end-user.  */
 package movieexamproject.gui.controller;
 
 import java.awt.Desktop;
@@ -42,7 +40,7 @@ import org.json.simple.parser.ParseException;
 /**
  * FXML Controller class
  *
- * @author Martin
+ * @author Gentle
  */
 public class FXMLDocumentController implements Initializable {
 
