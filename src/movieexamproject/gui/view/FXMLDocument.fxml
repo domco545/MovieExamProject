@@ -10,8 +10,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.controller.FXMLDocumentController">
     <children>
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView fx:id="tableView" layoutX="134.0" layoutY="13.0" prefHeight="385.0" prefWidth="249.0">
+        <Label fx:id="label" layoutX="258.0" layoutY="445.0" minHeight="16" minWidth="69" prefHeight="18.0" prefWidth="194.0" textFill="RED" />
+      <TableView fx:id="tableView" layoutX="133.0" layoutY="9.0" prefHeight="385.0" prefWidth="249.0">
         <columns>
           <TableColumn fx:id="collumTitle" prefWidth="75.0" text="Title" />
           <TableColumn fx:id="collumRating" prefWidth="75.0" text="Rating" />

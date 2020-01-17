@@ -134,9 +134,16 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void rateBtnAction(ActionEvent event) throws IOException {
+        if(tableView.getSelectionModel().getSelectedItem()==null)
+        {
+            label.setText("Please select a movie");
+            init();
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/view/AddRating.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
+        
         AddRatingController arc = loader.getController();
         arc.acceptData(tableView.getSelectionModel().getSelectedItem());
         
@@ -312,6 +319,7 @@ public class FXMLDocumentController implements Initializable {
         categoryList.getSelectionModel().select(0);
         obsMovie = FXCollections.observableArrayList(categoryList.getSelectionModel().getSelectedItem().getAllMovies());
         tableView.setItems(obsMovie);
+        
         
         
         
