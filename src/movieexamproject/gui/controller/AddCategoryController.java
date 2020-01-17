@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This window is for adding a cattegory to our category list by end-user.
  */
 package movieexamproject.gui.controller;
 
@@ -20,7 +18,7 @@ import movieexamproject.bll.Interface;
 /**
  * FXML Controller class
  *
- * @author saraf
+ * @author Gentlemen
  */
 public class AddCategoryController implements Initializable {
 

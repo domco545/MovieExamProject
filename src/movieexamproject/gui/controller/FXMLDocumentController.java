@@ -1,8 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+ * Gentlemen Group
+ * This controller is for home panel whereis fo main activity for end-user.  */
 package movieexamproject.gui.controller;
 
 import java.awt.Desktop;
@@ -42,7 +40,7 @@ import org.json.simple.parser.ParseException;
 /**
  * FXML Controller class
  *
- * @author Martin
+ * @author Gentle
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -286,25 +284,25 @@ public class FXMLDocumentController implements Initializable {
     }
     public void oldMoviePopUp()
     {
-      if(in.getMoviesToDelete().equals(null))
+      if(!obsMoviesToDelete.isEmpty())
         {
             try{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/view/OldMoviePopUp.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        
-        OldMoviePopUpController c = loader.getController();
-        c.acceptData(obsMoviesToDelete);
-                    
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-                    stage.setOnHiding(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                init();
-            }
+                Parent root = loader.load();
+                Stage stage = new Stage();
+
+                OldMoviePopUpController c = loader.getController();
+                c.acceptData(obsMoviesToDelete);
+
+                Scene scene = new Scene(root);
+
+                stage.setScene(scene);
+                stage.show();
+                            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent event) {
+                        init();
+                    }
         });
             } catch (IOException ex) {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
