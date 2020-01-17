@@ -90,8 +90,6 @@ public class AdvancedSearchController implements Initializable {
             ArrayList<Category> selectedCat = new ArrayList<>(obsSelected);
             obsMovies = FXCollections.observableArrayList(in.advancedSearch(searchTxt.getText(), selectedCat));
             movieTableview.setItems(obsMovies);
-
-            SearchBtn.setText("Cancel");
         }
     }
 

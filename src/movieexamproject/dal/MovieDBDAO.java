@@ -261,7 +261,7 @@ public class MovieDBDAO {
         ArrayList<Movie> movies = new ArrayList<Movie>();
         try(Connection con = ds.getConnection()){
             for (Category category : categories) {
-                String sql = "SELECT Movie.id,Movie.name,Movie.filepath,Movie.rating,Movie.imdbRating,Movie.imdbLink FROM MoviesOnCategories\n" +
+                String sql = "SELECT Movie.id,Movie.name,Movie.filepath,Movie.rating,Movie.lastView,Movie.imdbRating,Movie.imdbLink FROM MoviesOnCategories\n" +
                              "LEFT JOIN Movie ON MoviesOnCategories.MovieId = Movie.id\n" +
                              "WHERE MoviesOnCategories.CategoryId = ? AND (Movie.name LIKE ? OR Movie.rating LIKE ? OR Movie.imdbRating LIKE ?)";
                 PreparedStatement pstmt = con.prepareStatement(sql);
