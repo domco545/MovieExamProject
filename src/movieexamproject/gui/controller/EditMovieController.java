@@ -72,6 +72,7 @@ public class EditMovieController implements Initializable {
     {
         this.movie= movie;
         editMovietxt.setText(this.movie.getName());
+        filepathTxt.setText(this.movie.getFilelink());
         
         temp = new ArrayList<Category>(allCategories);
         temp.remove(0);
