@@ -66,7 +66,7 @@ public class CategoryDBDAO {
                             String filelink = rsAll.getString("filepath");
                             Date lastview = (rsAll.getDate("lastview"));
                             Movie movie = new Movie(id,name,rating,filelink,lastview);
-                            movie.setImdbRating(rsAll.getInt("imdbRating"));
+                            movie.setImdbRating(rsAll.getFloat("imdbRating"));
                             movie.setImdbLink(rsAll.getString("imdbLink"));
                             movies.add(movie);
                         }
@@ -88,7 +88,7 @@ public class CategoryDBDAO {
                         String filelink = rs.getString("filepath");
                         Date lastview = (rs.getDate("lastview"));
                         Movie movie = new Movie(id,name,rating,filelink,lastview);
-                        movie.setImdbRating(rs.getInt("imdbRating"));
+                        movie.setImdbRating(rs.getFloat("imdbRating"));
                         movie.setImdbLink(rs.getString("imdbLink"));
                         movies.add(movie);
                     } 

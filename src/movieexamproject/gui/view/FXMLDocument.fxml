@@ -8,20 +8,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.controller.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="258.0" layoutY="445.0" minHeight="16" minWidth="69" prefHeight="18.0" prefWidth="194.0" textFill="RED" />
-      <TableView fx:id="tableView" layoutX="133.0" layoutY="9.0" prefHeight="385.0" prefWidth="249.0">
+      <TableView fx:id="tableView" layoutX="133.0" layoutY="9.0" prefHeight="385.0" prefWidth="303.0">
         <columns>
           <TableColumn fx:id="collumTitle" prefWidth="75.0" text="Title" />
           <TableColumn fx:id="collumRating" prefWidth="75.0" text="Rating" />
             <TableColumn fx:id="collumLastViewed" prefWidth="75.0" text="LastViewed" />
+            <TableColumn fx:id="collumImdbRating" prefWidth="75.0" text="imdb Rating" />
         </columns>
       </TableView>
-      <Button fx:id="ratingBtn" layoutX="408.0" layoutY="158.0" mnemonicParsing="false" onAction="#rateBtnAction" text="Rating" />
-      <Button fx:id="playBtn" layoutX="415.0" layoutY="189.0" mnemonicParsing="false" onAction="#playBtnAction" text="Play" />
-      <TextField fx:id="searchField" layoutX="397.0" layoutY="22.0" />
-      <Button fx:id="searchBtn" layoutX="552.0" layoutY="22.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
+      <Button fx:id="ratingBtn" layoutX="446.0" layoutY="156.0" mnemonicParsing="false" onAction="#rateBtnAction" text="Rating" />
+      <Button fx:id="playBtn" layoutX="446.0" layoutY="189.0" mnemonicParsing="false" onAction="#playBtnAction" text="Play" />
+      <TextField fx:id="searchField" layoutX="447.0" layoutY="22.0" />
+      <Button fx:id="searchBtn" layoutX="597.0" layoutY="22.0" mnemonicParsing="false" onAction="#searchBtnAction" text="Search" />
       <ListView fx:id="categoryList" layoutX="-2.0" layoutY="-1.0" prefHeight="480.0" prefWidth="126.0" />
       <Button fx:id="addCatBtn" layoutX="143.0" layoutY="441.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
       <Button fx:id="removeCatBtn" layoutX="187.0" layoutY="441.0" mnemonicParsing="false" onAction="#removeCategory" text="Remove" />
@@ -30,10 +31,10 @@
       <Label layoutX="143.0" layoutY="418.0" text="Category " />
       <Label layoutX="459.0" layoutY="418.0" text="Movie" />
       <Button fx:id="editMovie" layoutX="503.0" layoutY="441.0" mnemonicParsing="false" onAction="#editMovie" text="Edit" />
-      <Button fx:id="detailBtn" layoutX="408.0" layoutY="125.0" mnemonicParsing="false" onAction="#openDetail" text="Detail" />
-      <Button layoutX="397.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchOneBtn" text="Fetch one" />
-      <Button layoutX="471.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchAllBtn" text="Fetch all" />
-      <Label layoutX="451.0" layoutY="268.0" text="Imdb data" />
-      <Button layoutX="498.0" layoutY="57.0" mnemonicParsing="false" onAction="#advancedSearch" text="Advanced Search" />
+      <Button fx:id="detailBtn" layoutX="447.0" layoutY="124.0" mnemonicParsing="false" onAction="#openDetail" text="Detail" />
+      <Button layoutX="444.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchOneBtn" text="Fetch one" />
+      <Button layoutX="521.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchAllBtn" text="Fetch all" />
+      <Label layoutX="484.0" layoutY="268.0" text="Imdb data" />
+      <Button layoutX="542.0" layoutY="54.0" mnemonicParsing="false" onAction="#advancedSearch" text="Advanced Search" />
     </children>
 </AnchorPane>

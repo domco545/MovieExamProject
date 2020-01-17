@@ -75,6 +75,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TableColumn<Movie, Date> collumLastViewed;
     @FXML
+    private TableColumn<Movie, Float> collumImdbRating;
+    @FXML
     private Button detailBtn;
     
     Interface in = new BllManager();
@@ -83,6 +85,7 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<Movie> searchResults = FXCollections.observableArrayList();
     private ObservableList<Movie> obsMoviesToDelete = FXCollections.observableArrayList(in.getMoviesToDelete());
     private boolean searching;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,6 +97,7 @@ public class FXMLDocumentController implements Initializable {
        collumTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
        collumRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
        collumLastViewed.setCellValueFactory(new PropertyValueFactory<>("lastview"));
+       collumImdbRating.setCellValueFactory(new PropertyValueFactory<>("ImdbRating"));
        
         categoryList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Category>() {
         @Override

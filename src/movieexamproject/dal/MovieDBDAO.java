@@ -157,7 +157,7 @@ public class MovieDBDAO {
                 String filePath = rs.getString("filePath");
                 Date lastView = rs.getDate("lastView");
                 Movie m = new Movie(id, name, rate, filePath, lastView);
-                m.setImdbRating(rs.getInt("imdbRating"));
+                m.setImdbRating(rs.getFloat("imdbRating"));
                 m.setImdbLink(rs.getString("imdbLink"));
                 movies.add(m);
             }
@@ -190,7 +190,7 @@ public class MovieDBDAO {
                 String filePath = rs.getString("filePath");
                 Date lastView = rs.getDate("lastView");
                 Movie m = new Movie(id, name, rate, filePath, lastView);
-                m.setImdbRating(rs.getInt("imdbRating"));
+                m.setImdbRating(rs.getFloat("imdbRating"));
                 m.setImdbLink(rs.getString("imdbLink"));
                 movies.add(m);
             }
@@ -217,7 +217,7 @@ public class MovieDBDAO {
                 String filePath = rs.getString("filePath");
                 Date lastView = rs.getDate("lastView");
                 Movie m = new Movie(id, name, rate, filePath, lastView);
-                m.setImdbRating(rs.getInt("imdbRating"));
+                m.setImdbRating(rs.getFloat("imdbRating"));
                 m.setImdbLink(rs.getString("imdbLink"));
                 movies.add(m);
             }
@@ -284,7 +284,7 @@ public class MovieDBDAO {
                     String filePath = rs.getString("filePath");
                     Date lastView = rs.getDate("lastView");
                     Movie m = new Movie(id, name, rate, filePath, lastView);
-                    m.setImdbRating(rs.getInt("imdbRating"));
+                    m.setImdbRating(rs.getFloat("imdbRating"));
                     m.setImdbLink(rs.getString("imdbLink"));
                     movies.add(m);
                 }
