@@ -87,6 +87,6 @@ public class Movie {
 
     @Override
     public String toString() {
-        return name+" "+lastview; //To change body of generated methods, choose Tools | Templates.
+        return "Name:"+name+" "+"Last viewed:"+lastview; //To change body of generated methods, choose Tools | Templates.
     }
 }
