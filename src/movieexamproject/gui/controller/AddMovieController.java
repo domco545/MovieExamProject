@@ -28,7 +28,7 @@ import movieexamproject.bll.Interface;
 /**
  * FXML Controller class
  *
- * @Gentlemen
+ * @Gentleman
  */
 public class AddMovieController implements Initializable {
 
