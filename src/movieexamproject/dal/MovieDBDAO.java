@@ -16,7 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import movieexamproject.be.Category;
 import java.sql.*;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import movieexamproject.be.Movie;
 import movieexamproject.be.WebData;
 
@@ -253,5 +255,43 @@ public class MovieDBDAO {
         } catch (SQLException ex) {
             Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public ArrayList<Movie> advancedSearch(String query, ArrayList<Category> categories){
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        try(Connection con = ds.getConnection()){
+            for (Category category : categories) {
+                String sql = "SELECT Movie.id,Movie.name,Movie.filepath,Movie.rating,Movie.imdbRating,Movie.imdbLink FROM MoviesOnCategories\n" +
+                             "LEFT JOIN Movie ON MoviesOnCategories.MovieId = Movie.id\n" +
+                             "WHERE MoviesOnCategories.CategoryId = ? AND (Movie.name LIKE ? OR Movie.rating LIKE ? OR Movie.imdbRating LIKE ?)";
+                PreparedStatement pstmt = con.prepareStatement(sql);
+                pstmt.setInt(1, category.getId());
+                pstmt.setString(2, "%"+query+"%");
+                pstmt.setString(3, "%"+query+"%");
+                pstmt.setString(4, "%"+query+"%");
+                
+                ResultSet rs = pstmt.executeQuery();
+                while(rs.next()){
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    float rate = rs.getFloat("rating");
+                    String filePath = rs.getString("filePath");
+                    Date lastView = rs.getDate("lastView");
+                    Movie m = new Movie(id, name, rate, filePath, lastView);
+                    m.setImdbRating(rs.getInt("imdbRating"));
+                    m.setImdbLink(rs.getString("imdbLink"));
+                    movies.add(m);
+                }
+            }
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDBDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //removing duplicates
+        Set<Movie> removeDuplicates = new LinkedHashSet<Movie>(movies);
+        movies.clear();
+        movies.addAll(removeDuplicates);
+        return movies;
     }
 }

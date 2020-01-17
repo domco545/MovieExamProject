@@ -50,7 +50,7 @@ public class EditMovieController implements Initializable {
     private Button CancelBtn;
     Category category;
     Movie movie;
-     private ObservableList<Category> obsSelected = FXCollections.observableArrayList();
+    private ObservableList<Category> obsSelected = FXCollections.observableArrayList();
     private ObservableList<Category> obsChoicebox = FXCollections.observableArrayList();
     private ArrayList<Category> temp;
     Interface in = new BllManager();

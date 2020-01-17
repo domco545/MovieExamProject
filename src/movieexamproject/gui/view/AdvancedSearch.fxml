@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movieexamproject.gui.controller.AdvancedSearchController">
+   <children>
+      <TableView fx:id="movieTableview" layoutX="14.0" layoutY="14.0" prefHeight="368.0" prefWidth="301.0">
+        <columns>
+          <TableColumn fx:id="collumTitle" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="collumRating" prefWidth="75.0" text="Rating" />
+            <TableColumn fx:id="collumLastviewed" prefWidth="75.0" text="Last viewed" />
+            <TableColumn fx:id="collumImdbRating" prefWidth="75.0" text="Imdb rating" />
+        </columns>
+      </TableView>
+      <TextField fx:id="searchTxt" layoutX="381.0" layoutY="14.0" />
+      <Button fx:id="SearchBtn" layoutX="534.0" layoutY="14.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <ListView fx:id="selectedCategoryLst" layoutX="386.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="401.0" layoutY="63.0" text="Searching from these categories" />
+      <ChoiceBox fx:id="categoryChoicebox" layoutX="386.0" layoutY="297.0" prefHeight="25.0" prefWidth="130.0" />
+      <Button fx:id="addBtn" layoutX="530.0" layoutY="297.0" mnemonicParsing="false" onAction="#addCategory" text="Add" />
+      <Button fx:id="removeBtn" layoutX="530.0" layoutY="335.0" mnemonicParsing="false" onAction="#removeCategory" text="Remove" />
+      <Label fx:id="errorLbl" layoutX="381.0" layoutY="352.0" />
+      <Button layoutX="327.0" layoutY="339.0" mnemonicParsing="false" onAction="#playMovie" text="play movie" />
+   </children>
+</AnchorPane>

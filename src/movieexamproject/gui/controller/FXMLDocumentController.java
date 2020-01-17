@@ -348,6 +348,20 @@ public class FXMLDocumentController implements Initializable {
     private void fetchAllBtn(ActionEvent event) {
         in.fetchAllFromOmdb(categoryList.getItems().get(0).getAllMovies());
     }
+
+    @FXML
+    private void advancedSearch(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/movieexamproject/gui/view/AdvancedSearch.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        
+        AdvancedSearchController asc = loader.getController();
+        asc.acceptData(obsCategories);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
 }
     
 

@@ -34,5 +34,6 @@
       <Button layoutX="397.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchOneBtn" text="Fetch one" />
       <Button layoutX="471.0" layoutY="299.0" mnemonicParsing="false" onAction="#fetchAllBtn" text="Fetch all" />
       <Label layoutX="451.0" layoutY="268.0" text="Imdb data" />
+      <Button layoutX="498.0" layoutY="57.0" mnemonicParsing="false" onAction="#advancedSearch" text="Advanced Search" />
     </children>
 </AnchorPane>

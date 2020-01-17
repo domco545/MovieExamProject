@@ -32,6 +32,6 @@ public interface Interface {
       public ArrayList<Movie> getMoviesByTilteAndRatings(String query);
       public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId);
       public ArrayList<Movie> getMoviesToDelete();
-
-    public void deleteAllMovies(List<Movie> obsSelected);
+      public void deleteAllMovies(List<Movie> obsSelected);
+      public ArrayList<Movie> advancedSearch(String query, ArrayList<Category> categories);
 }

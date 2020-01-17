@@ -150,4 +150,9 @@ public class BllManager implements Interface{
     public void deleteAllMovies(List<Movie> obsSelected) {
          moviedao.deleteAllMovies(obsSelected);
     }
+
+    @Override
+    public ArrayList<Movie> advancedSearch(String query, ArrayList<Category> categories) {
+       return moviedao.advancedSearch(query, categories);
+    }
 }
