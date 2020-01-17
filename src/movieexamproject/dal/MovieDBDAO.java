@@ -90,13 +90,13 @@ public class MovieDBDAO {
     
     public void updateMovie(int id, String name, String filepath,ArrayList<Category> categories){
         try(Connection con = ds.getConnection()){
-            String sql = "UPDATE Movie SET name = ?,  filepath = ?"
+            String sql = "UPDATE Movie SET name = ?,  filepath = ? WHERE id=?;"
                        + "DELETE FROM MoviesOnCategories WHERE MovieId=?";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, name);
-           
             pstmt.setString(2, filepath);
             pstmt.setInt(3, id);
+            pstmt.setInt(4, id);
             pstmt.executeUpdate();
             
             for (Category category : categories) {
@@ -157,6 +157,8 @@ public class MovieDBDAO {
                 String filePath = rs.getString("filePath");
                 Date lastView = rs.getDate("lastView");
                 Movie m = new Movie(id, name, rate, filePath, lastView);
+                m.setImdbRating(rs.getInt("imdbRating"));
+                m.setImdbLink(rs.getString("imdbLink"));
                 movies.add(m);
             }
             return movies;
@@ -170,7 +172,7 @@ public class MovieDBDAO {
     
     public ArrayList<Movie> getMoviesByTilteAndRatingsOnCategory(String query, int categoryId){
          try(Connection con = ds.getConnection();) {
-            String sql="SELECT Movie.id, Movie.name, Movie.rating, \n" +
+            String sql="SELECT Movie.id, Movie.name, Movie.rating,Movie.imdbRating,Movie.imdbLink \n" +
                        "Movie.lastview, Movie.filepath FROM MoviesOnCategories\n" +
                        "LEFT JOIN Movie ON MoviesOnCategories.MovieId = Movie.id\n" +
                        "WHERE MoviesOnCategories.CategoryId=? AND (Movie.name LIKE ? OR Movie.rating LIKE ?)";
@@ -188,6 +190,8 @@ public class MovieDBDAO {
                 String filePath = rs.getString("filePath");
                 Date lastView = rs.getDate("lastView");
                 Movie m = new Movie(id, name, rate, filePath, lastView);
+                m.setImdbRating(rs.getInt("imdbRating"));
+                m.setImdbLink(rs.getString("imdbLink"));
                 movies.add(m);
             }
             return movies;
@@ -213,6 +217,8 @@ public class MovieDBDAO {
                 String filePath = rs.getString("filePath");
                 Date lastView = rs.getDate("lastView");
                 Movie m = new Movie(id, name, rate, filePath, lastView);
+                m.setImdbRating(rs.getInt("imdbRating"));
+                m.setImdbLink(rs.getString("imdbLink"));
                 movies.add(m);
             }
             

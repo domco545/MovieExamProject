@@ -66,12 +66,14 @@ public class CategoryDBDAO {
                             String filelink = rsAll.getString("filepath");
                             Date lastview = (rsAll.getDate("lastview"));
                             Movie movie = new Movie(id,name,rating,filelink,lastview);
+                            movie.setImdbRating(rsAll.getInt("imdbRating"));
+                            movie.setImdbLink(rsAll.getString("imdbLink"));
                             movies.add(movie);
                         }
                         
                     }else{
 
-                    String sql2 = "SELECT Movie.id,Movie.name,Movie.filepath,Movie.rating,Movie.lastview,MoviesOnCategories.CategoryId,MoviesOnCategories.MovieId\n" +
+                    String sql2 = "SELECT Movie.id,Movie.name,Movie.filepath,Movie.rating,Movie.lastview,Movie.imdbRating,Movie.imdbLink,MoviesOnCategories.CategoryId,MoviesOnCategories.MovieId\n" +
                                   "FROM MoviesOnCategories\n" +
                                   "LEFT JOIN Movie ON MoviesOnCategories.MovieId = Movie.id\n" +
                                   "WHERE MoviesOnCategories.CategoryId=?";
@@ -86,6 +88,8 @@ public class CategoryDBDAO {
                         String filelink = rs.getString("filepath");
                         Date lastview = (rs.getDate("lastview"));
                         Movie movie = new Movie(id,name,rating,filelink,lastview);
+                        movie.setImdbRating(rs.getInt("imdbRating"));
+                        movie.setImdbLink(rs.getString("imdbLink"));
                         movies.add(movie);
                     } 
                     }

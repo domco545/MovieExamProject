@@ -17,7 +17,7 @@ import java.net.URL;
  */
 public class OmdbAPI {
     private static final String GET_URL = "http://www.omdbapi.com/?t=";
-    private static final String API_KEY = "&apikey=";
+    private static final String API_KEY = "&apikey=4e338759";
 
     public String sendGET(String q) throws IOException {
         String querry = q.replaceAll(" ", "+");

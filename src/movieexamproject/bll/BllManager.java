@@ -89,8 +89,8 @@ public class BllManager implements Interface{
                 JSONObject json = (JSONObject) parser.parse(s);
                 
                 try{
-                    imdbRating = (Float) json.get("imdbRating");
-                    imdb = (String) json.get("imdbID");
+                    imdbRating = Float.parseFloat(json.get("imdbRating").toString());
+                    imdb = (String) json.get("imdbID").toString();
                     String imdbLink = "https://www.imdb.com/title/"+imdb;
                 
                     WebData data = new WebData(movie.getId(),imdbRating,imdbLink);
@@ -113,8 +113,8 @@ public class BllManager implements Interface{
         JSONObject json = (JSONObject) parser.parse(s);
         
         try{
-            float imdbRating = (Float) json.get("imdbRating");
-            String imdb = (String) json.get("imdbID");
+            float imdbRating = Float.parseFloat(json.get("imdbRating").toString());
+            String imdb = (String) json.get("imdbID").toString();
             String imdbLink = "https://www.imdb.com/title/"+imdb;
             WebData data = new WebData(m.getId(),imdbRating,imdbLink);
             
