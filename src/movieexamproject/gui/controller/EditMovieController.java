@@ -109,7 +109,7 @@ public class EditMovieController implements Initializable {
 
     @FXML
     private void addCategory(ActionEvent event) {
-      Category temp =    choicebox.getSelectionModel().getSelectedItem();
+      Category temp = choicebox.getSelectionModel().getSelectedItem();
       obsSelected.add(temp);
       obsChoicebox.remove(temp);
       ListView.setItems(obsSelected);

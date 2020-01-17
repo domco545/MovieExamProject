@@ -118,10 +118,8 @@ public class BllManager implements Interface{
             String imdbLink = "https://www.imdb.com/title/"+imdb;
             WebData data = new WebData(m.getId(),imdbRating,imdbLink);
             
-            System.out.println("adding to db"+imdb);
             moviedao.addOneOmdb(data);
         }catch(Exception e){
-            System.out.println("error while parsing json");
         }
     }
 
