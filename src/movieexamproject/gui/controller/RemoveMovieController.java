@@ -42,6 +42,7 @@ public class RemoveMovieController implements Initializable {
     @FXML
     private void delete(ActionEvent event) {
         in.deleteMovie(movie.getId());
+        cancel(event);
     }
 
     @FXML
