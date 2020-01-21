@@ -76,7 +76,7 @@ public class MovieDBDAO {
     public void deleteMovie(int id){
         try(Connection con = ds.getConnection()){
             String sql = "DELETE FROM Movie WHERE id = ?;"
-                       + "DELETE FROM MoviesOnCategories WHERE CategoryId = ?";
+                       + "DELETE FROM MoviesOnCategories WHERE MovieId = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, id);
             pstmt.setInt(2, id);
